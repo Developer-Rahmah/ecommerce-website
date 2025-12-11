@@ -1,0 +1,65 @@
+@use "./theming.scss" as *;
+
+html,
+body {
+  padding: 0;
+  margin: 0;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  @include getPropByTheme(background-color, whiteColors, whiteBase);
+  @include getPropByTheme(color, greyColors, grey900);
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+input:focus {
+  outline: none;
+  border: 0;
+}
+
+.pointer {
+  cursor: pointer;
+}
+
+.ltrLayout {
+  direction: ltr;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+}
+
+.rtlLayout {
+  direction: rtl;
+  font-family: 'Tajawal', sans-serif;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.pageWrapper {
+  max-width: 1440px;
+  padding-right: 15px;
+  padding-left: 15px;
+  margin: 0 auto;
+}
+
+.sectionWrapper {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.justify-evenly {
+  display: flex;
+  justify-content: space-between;
+}
+
+.justify-start {
+  display: flex;
+  justify-content: flex-start;
+  gap: 20px;
+}

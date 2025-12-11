@@ -1,0 +1,299 @@
+@use "../../../styles/theming.scss" as *;
+
+.promo-bar {
+  @include getPropByTheme(background-color, greyColors, grey100);
+  @include getPropByTheme(border-bottom-color, greyColors, grey200);
+  border-bottom-width: 1px;
+  border-bottom-style: solid;
+}
+
+.promo-bar-container {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.promo-bar-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 40px;
+  font-size: 13px;
+}
+
+.promo-text {
+  @include getPropByTheme(color, greyColors, grey900);
+  font-weight: 400;
+  flex: 1;
+  text-align: center;
+}
+
+.promo-code {
+  font-weight: 600;
+  margin-left: 4px;
+}
+
+.promo-controls {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.language-button {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  @include getPropByTheme(color, greyColors, grey900);
+  font-size: 13px;
+  cursor: pointer;
+  padding: 4px 8px;
+  border-radius: 4px;
+  transition: background-color 0.2s;
+
+  &:hover {
+    @include getPropByTheme(background-color, greyColors, grey100);
+  }
+}
+
+.language-selector {
+  position: relative;
+}
+
+.currency-selector {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 12px;
+  background-color: transparent;
+  @include getPropByTheme(border-color, greyColors, grey200);
+  border-width: 1px;
+  border-style: solid;
+  border-radius: 4px;
+  @include getPropByTheme(color, greyColors, grey900);
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+
+  &:hover {
+    @include getPropByTheme(background-color, greyColors, grey100);
+    @include getPropByTheme(border-color, greyColors, grey400);
+  }
+}
+
+.language-dropdown {
+  position: absolute;
+  top: calc(100% + 4px);
+  right: 0;
+  @include getPropByTheme(background-color, whiteColors, whiteBase);
+  @include getPropByTheme(border-color, greyColors, grey200);
+  border-width: 1px;
+  border-style: solid;
+  border-radius: 6px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  z-index: 100;
+  min-width: 120px;
+  overflow: hidden;
+}
+
+.language-option {
+  display: block;
+  width: 100%;
+  padding: 10px 16px;
+  background: none;
+  border: none;
+  text-align: left;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  @include getPropByTheme(color, greyColors, grey900);
+  font-size: 13px;
+
+  &:hover {
+    @include getPropByTheme(background-color, greyColors, grey100);
+  }
+
+  &.active {
+    @include getPropByTheme(background-color, accentColors, green500);
+    font-weight: 500;
+  }
+}
+
+.header-main {
+  @include getPropByTheme(background-color, whiteColors, whiteBase);
+  @include getPropByTheme(border-bottom-color, greyColors, grey100);
+  border-bottom-width: 1px;
+  border-bottom-style: solid;
+  position: sticky;
+  top: 0;
+  z-index: 50;
+}
+
+.header-main-container {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 64px;
+  position: relative;
+}
+
+.mobile-menu-toggle {
+  display: block;
+  padding: 8px;
+  margin-left: -8px;
+  background: none;
+  border: none;
+  cursor: pointer;
+
+  @media (min-width: 768px) {
+    display: none;
+  }
+}
+
+.nav-desktop {
+  display: none;
+  align-items: center;
+  gap: 32px;
+  flex: 1;
+
+  @media (min-width: 768px) {
+    display: flex;
+  }
+}
+
+.nav-link {
+  font-size: 14px;
+  font-weight: 400;
+  @include getPropByTheme(color, greyColors, grey900);
+  text-decoration: none;
+  transition: color 0.2s;
+  white-space: nowrap;
+
+  &:hover {
+    @include getPropByTheme(color, greyColors, grey400);
+  }
+
+  &.shop-all {
+    @include getPropByTheme(color, accentColors, coral500);
+
+    &:hover {
+      @include getPropByTheme(color, accentColors, coral400);
+    }
+  }
+}
+
+.logo {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+
+  h1 {
+    font-size: 28px;
+    font-family: serif;
+    font-style: italic;
+    @include getPropByTheme(color, greyColors, grey900);
+    margin: 0;
+
+    @media (min-width: 768px) {
+      font-size: 32px;
+    }
+  }
+}
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex: 1;
+  justify-content: flex-end;
+}
+
+.action-link {
+  display: none;
+  font-size: 14px;
+  @include getPropByTheme(color, greyColors, grey900);
+  text-decoration: none;
+  transition: color 0.2s;
+
+  @media (min-width: 768px) {
+    display: block;
+  }
+
+  &:hover {
+    @include getPropByTheme(color, greyColors, grey400);
+  }
+}
+
+.action-button {
+  padding: 8px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  @include getPropByTheme(color, greyColors, grey900);
+  transition: opacity 0.2s;
+
+  &:hover {
+    opacity: 0.7;
+  }
+}
+
+.mobile-menu {
+  display: block;
+  @include getPropByTheme(border-top-color, greyColors, grey100);
+  border-top-width: 1px;
+  border-top-style: solid;
+  padding: 16px 0;
+  @include getPropByTheme(background-color, whiteColors, whiteBase);
+
+  @media (min-width: 768px) {
+    display: none;
+  }
+}
+
+.mobile-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.mobile-nav-link {
+  @include getPropByTheme(color, greyColors, grey900);
+  font-size: 14px;
+  padding: 8px 0;
+  text-decoration: none;
+  transition: color 0.2s;
+
+  &:hover {
+    @include getPropByTheme(color, greyColors, grey400);
+  }
+
+  &.shop-all {
+    @include getPropByTheme(color, accentColors, coral500);
+  }
+}
+
+.mobile-account {
+  @include getPropByTheme(border-top-color, greyColors, grey100);
+  border-top-width: 1px;
+  border-top-style: solid;
+  padding-top: 16px;
+  margin-top: 8px;
+}
+
+[dir="rtl"] {
+  .promo-code {
+    margin-left: 0;
+    margin-right: 4px;
+  }
+
+  .language-dropdown {
+    right: auto;
+    left: 0;
+  }
+
+  .language-option {
+    text-align: right;
+  }
+}

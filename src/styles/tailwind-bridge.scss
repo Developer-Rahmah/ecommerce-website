@@ -1,0 +1,22 @@
+@use "sass:map";
+@use "./colors.scss" as colors;
+
+:root {
+  @each $themeName, $themeValue in colors.$themes {
+    @each $colorParent, $colorMap in $themeValue {
+      @each $colorName, $colorValue in $colorMap {
+        --#{$colorParent}-#{$colorName}: #{$colorValue};
+      }
+    }
+  }
+}
+
+[data-theme="light"] {
+  --background-color: #{map.get(map.get(map.get(colors.$themes, "light"), "whiteColors"), "whiteBase")};
+  --text-color: #{map.get(map.get(map.get(colors.$themes, "light"), "greyColors"), "grey900")};
+}
+
+[data-theme="dark"] {
+  --background-color: #{map.get(map.get(map.get(colors.$themes, "dark"), "whiteColors"), "whiteBase")};
+  --text-color: #{map.get(map.get(map.get(colors.$themes, "dark"), "greyColors"), "grey900")};
+}

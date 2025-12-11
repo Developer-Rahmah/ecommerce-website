@@ -1,0 +1,254 @@
+.product-details-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0;
+}
+
+@media (min-width: 1024px) {
+  .product-details-grid {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0;
+  }
+}
+
+.details-section {
+  border: 1px solid #dedede;
+  border-left: none;
+}
+
+.details-section:first-child {
+  border-left: 1px solid #dedede;
+}
+
+.section-header {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 1.25rem;
+  background: white;
+  border: none;
+  cursor: pointer;
+  border-bottom: 1px solid #dedede;
+}
+
+.section-header.with-left-padding {
+  padding-left: 2rem;
+}
+
+.section-title {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #212121;
+  text-align: left;
+}
+
+.section-content {
+  padding: 1.5rem 1.25rem;
+  background: white;
+}
+
+.section-content.with-left-padding {
+  padding-left: 2rem;
+}
+
+.mb-6 {
+  margin-bottom: 1.5rem;
+}
+
+.content-divider {
+  height: 1px;
+  background-color: #dedede;
+  margin: 1.5rem 0;
+}
+
+.fabric-detail-title {
+  font-size: 0.875rem;
+  font-weight: 400;
+  color: #212121;
+  margin-bottom: 0.5rem;
+}
+
+.fabric-detail-text {
+  font-size: 0.875rem;
+  color: #a0a0a0;
+  margin-bottom: 1rem;
+}
+
+.fabric-image {
+  width: 100%;
+  height: auto;
+  border-radius: 4px;
+}
+
+.cleaning-item {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.cleaning-icon {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+}
+
+.cleaning-text {
+  font-size: 0.875rem;
+  color: #212121;
+}
+
+.description-text {
+  font-size: 0.875rem;
+  line-height: 1.6;
+  color: #212121;
+  margin-bottom: 2rem;
+}
+
+.buy-set-title {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #212121;
+  margin-bottom: 1rem;
+}
+
+.buy-set-image-wrapper {
+  position: relative;
+  width: 100%;
+  max-width: 240px;
+  overflow: hidden;
+  border-radius: 4px;
+}
+
+.buy-set-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.6), transparent);
+  padding: 2rem 1rem 1rem;
+  display: flex;
+  justify-content: center;
+}
+
+.buy-set-button {
+  background: white;
+  color: #212121;
+  padding: 0.625rem 1.5rem;
+  border-radius: 4px;
+  border: none;
+  font-size: 0.875rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.buy-set-button:hover {
+  background: #f2f2f2;
+}
+
+.toggle-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.toggle-label {
+  font-size: 0.75rem;
+  white-space: nowrap;
+}
+
+.toggle-label.active {
+  color: #212121;
+  font-weight: 500;
+}
+
+.toggle-label.inactive {
+  color: #a0a0a0;
+}
+
+.toggle-switch {
+  position: relative;
+  display: inline-block;
+  width: 42px;
+  height: 24px;
+  cursor: pointer;
+}
+
+.toggle-input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.toggle-slider {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #eca396;
+  border-radius: 24px;
+  transition: 0.3s;
+}
+
+.toggle-thumb {
+  position: absolute;
+  height: 18px;
+  width: 18px;
+  left: 3px;
+  top: 3px;
+  background-color: white;
+  border-radius: 50%;
+  transition: 0.3s;
+}
+
+.toggle-input:checked + .toggle-slider .toggle-thumb {
+  transform: translateX(18px);
+}
+
+.return-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 1.5rem 0;
+}
+
+.return-list-item {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 0.75rem;
+  font-size: 0.75rem;
+  color: #212121;
+  line-height: 1.5;
+}
+
+.delivery-table {
+  border: 1px solid #dedede;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.delivery-row {
+  display: grid;
+  grid-template-columns: 140px 1fr;
+  border-bottom: 1px solid #dedede;
+}
+
+.delivery-row:last-child {
+  border-bottom: none;
+}
+
+.delivery-city {
+  padding: 0.75rem 1rem;
+  font-size: 0.875rem;
+  color: #212121;
+  border-right: 1px solid #dedede;
+  background: #fafafa;
+}
+
+.delivery-time {
+  padding: 0.75rem 1rem;
+  font-size: 0.875rem;
+  color: #212121;
+}

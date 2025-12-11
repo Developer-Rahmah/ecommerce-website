@@ -1,0 +1,125 @@
+.related-products {
+  padding: var(--spacing-8) 0;
+}
+
+@media (min-width: 768px) {
+  .related-products {
+    padding: var(--spacing-12) 0;
+  }
+}
+
+.related-products__title {
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-normal);
+  color: var(--color-text-primary);
+  text-align: center;
+  margin-bottom: var(--spacing-8);
+}
+
+@media (min-width: 768px) {
+  .related-products__title {
+    font-size: var(--font-size-2xl);
+    margin-bottom: var(--spacing-10);
+  }
+}
+
+.related-products__grid {
+  display: none;
+  gap: var(--spacing-3);
+}
+
+@media (min-width: 768px) {
+  .related-products__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--spacing-4);
+  }
+}
+
+@media (min-width: 1024px) {
+  .related-products__grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+@media (min-width: 1280px) {
+  .related-products__grid {
+    grid-template-columns: repeat(7, 1fr);
+  }
+}
+
+.related-products__carousel {
+  display: block;
+}
+
+@media (min-width: 768px) {
+  .related-products__carousel {
+    display: none;
+  }
+}
+
+.related-products__carousel-wrapper {
+  position: relative;
+}
+
+.related-products__carousel-track {
+  overflow: hidden;
+}
+
+.related-products__carousel-slides {
+  display: flex;
+  transition: transform 0.3s ease-in-out;
+}
+
+.related-products__carousel-slide {
+  width: 100%;
+  flex-shrink: 0;
+  padding: 0 var(--spacing-2);
+}
+
+.related-products__nav-button {
+  position: absolute;
+  top: 33.33%;
+  transform: translateY(-50%);
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 50%;
+  padding: var(--spacing-2);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  border: none;
+  cursor: pointer;
+}
+
+.related-products__nav-button--prev {
+  left: var(--spacing-2);
+}
+
+.related-products__nav-button--next {
+  right: var(--spacing-2);
+}
+
+.related-products__indicators {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-2);
+  margin-top: var(--spacing-6);
+}
+
+.related-products__indicator {
+  height: 8px;
+  border-radius: 9999px;
+  transition: all 0.3s ease;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  background: var(--color-border-light);
+}
+
+.related-products__indicator--active {
+  width: 24px;
+  background: var(--color-text-primary);
+}
+
+.related-products__indicator:not(.related-products__indicator--active) {
+  width: 8px;
+}

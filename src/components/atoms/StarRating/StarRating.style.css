@@ -1,0 +1,43 @@
+.star-rating {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.star-rating__stars {
+  display: flex;
+  gap: 2px;
+}
+
+.star-rating__star {
+  flex-shrink: 0;
+}
+
+.star-rating__star--filled {
+  color: var(--color-star);
+}
+
+.star-rating__star--empty {
+  color: var(--color-border-light);
+}
+
+.star-rating__number {
+  font-size: 14px;
+  color: var(--color-primary);
+  margin-left: 4px;
+}
+
+.star-rating--small .star-rating__star {
+  width: 14px;
+  height: 14px;
+}
+
+.star-rating--medium .star-rating__star {
+  width: 16px;
+  height: 16px;
+}
+
+.star-rating--large .star-rating__star {
+  width: 20px;
+  height: 20px;
+}
