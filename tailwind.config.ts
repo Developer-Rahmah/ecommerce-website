@@ -15,9 +15,9 @@ const config: Config = {
         "star-yellow": "#FFC700", // Star rating color
         "text-muted": "#6B7280", // Lighter gray text
       },
+
       fontFamily: {
-        // Set 'Inter' as the default sans-serif font
-        sans: ["Inter", ...defaultTheme.fontFamily.sans],
+        satoshi: ["var(--font-satoshi)"],
       },
       screens: {
         // Define custom breakpoints if needed, or use Tailwind defaults:

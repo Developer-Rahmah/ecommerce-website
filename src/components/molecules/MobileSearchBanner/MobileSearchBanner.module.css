@@ -1,0 +1,73 @@
+/* MobileSearchBanner.module.css */
+.mobile-search-banner {
+  background-color: var(--color-secondary);
+  border-bottom: 1px solid var(--color-border-light);
+  padding: 0.75rem 1rem;
+}
+
+.search-container {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  max-width: 100%;
+}
+
+.visual-search-button {
+  background: none;
+  border: none;
+  padding: 0.5rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.visual-search-icon {
+  fill: var(--color-text-primary);
+  width: 24px;
+  height: 24px;
+}
+
+.search-input-wrapper {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  background-color: var(--color-white);
+  border-radius: 3px;
+  overflow: hidden;
+  border: 1px solid var(--color-primary);
+}
+
+.search-input {
+  flex: 1;
+  padding: 10px;
+  background: none;
+  border: none;
+  font-size: 0.875rem;
+  color: var(--color-text-primary);
+  outline: none;
+  width: 100%;
+}
+
+.search-input::placeholder {
+  color: var(--color-text-secondary);
+  opacity: 0.7;
+}
+
+.search-button {
+  padding: 0.5rem 1rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-text-primary);
+}
+
+/* Hide on desktop */
+@media (min-width: 768px) {
+  .mobile-search-banner {
+    display: none;
+  }
+}

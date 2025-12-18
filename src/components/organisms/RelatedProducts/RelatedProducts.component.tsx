@@ -1,17 +1,22 @@
-"use client"
+"use client";
 
-import type React from "react"
-import { useState } from "react"
-import Image from "next/image"
-import { useLanguage } from "@/src/contexts/LanguageContext"
-import type { RelatedProductsProps } from "./RelatedProducts.types"
-import type { RelatedProduct as APIRelatedProduct } from "@/src/services/api/productService"
-import "./RelatedProducts.style.css"
-import { iconsObject } from "@/src/assets/icons/iconsObject"
+import type React from "react";
+import { useState, useRef, useEffect } from "react";
+import Image from "next/image";
+import { useLanguage } from "@/src/contexts/LanguageContext";
+import type { RelatedProductsProps } from "./RelatedProducts.types";
+import type { RelatedProduct as APIRelatedProduct } from "@/src/services/api/productService";
+import "./RelatedProducts.style.css";
+import iconsObject from "@/src/assets/icons/iconsObject";
+import { Icon } from "../../atoms/Icon";
+import CustomText from "../../atoms/CustomText";
 
-export const RelatedProducts: React.FC<RelatedProductsProps> = ({ products }) => {
-  const [currentIndex, setCurrentIndex] = useState(0)
-  const { t } = useLanguage()
+export const RelatedProducts: React.FC<RelatedProductsProps> = ({
+  products,
+}) => {
+  const [activeIndex, setActiveIndex] = useState(0);
+  const scrollRef = useRef<HTMLDivElement>(null);
+  const { t } = useLanguage();
 
   const displayProducts =
     products?.map((p: APIRelatedProduct) => ({
@@ -20,17 +25,35 @@ export const RelatedProducts: React.FC<RelatedProductsProps> = ({ products }) =>
       title: p.name,
       price: p.price,
       badge: p.newArrival ? t("relatedProducts.newArrival") : undefined,
-    })) || []
+    })) || [];
 
-  const nextSlide = () => {
-    setCurrentIndex((prev) => (prev + 1) % displayProducts.length)
-  }
+  useEffect(() => {
+    const scrollContainer = scrollRef.current;
+    if (!scrollContainer) return;
 
-  const prevSlide = () => {
-    setCurrentIndex((prev) => (prev - 1 + displayProducts.length) % displayProducts.length)
-  }
+    const handleScroll = () => {
+      const scrollLeft = scrollContainer.scrollLeft;
+      const itemWidth = scrollContainer.scrollWidth / displayProducts.length;
+      const newIndex = Math.round(scrollLeft / itemWidth);
+      setActiveIndex(Math.min(newIndex, displayProducts.length - 1));
+    };
 
-  if (!displayProducts.length) return null
+    scrollContainer.addEventListener("scroll", handleScroll);
+    return () => scrollContainer.removeEventListener("scroll", handleScroll);
+  }, [displayProducts.length]);
+
+  const scrollToItem = (index: number) => {
+    const scrollContainer = scrollRef.current;
+    if (!scrollContainer) return;
+
+    const itemWidth = scrollContainer.scrollWidth / displayProducts.length;
+    scrollContainer.scrollTo({
+      left: itemWidth * index,
+      behavior: "smooth",
+    });
+  };
+
+  if (!displayProducts.length) return null;
 
   return (
     <section className="related-products">
@@ -40,40 +63,43 @@ export const RelatedProducts: React.FC<RelatedProductsProps> = ({ products }) =>
       <div className="related-products__grid">
         {displayProducts.map((product) => (
           <div key={product.id} className="group cursor-pointer">
-            <div className="relative aspect-[3/4] mb-3 overflow-hidden bg-[#C8B5A0]">
+            <div className="related-products-image">
               <Image
                 src={product.image || "/placeholder.svg"}
                 alt={product.title}
                 fill
-                className="object-cover group-hover:scale-105 transition-transform duration-300"
+                className=" product-img"
               />
               {product.badge && (
-                <div className="absolute top-2 left-2 bg-white px-2.5 py-1 text-[10px] md:text-xs font-normal text-[#212121]">
-                  {product.badge}
-                </div>
+                <div className="product-badge">{product.badge}</div>
               )}
             </div>
-            <h3 className="text-sm font-normal text-[#212121] mb-1">{product.title}</h3>
+            <CustomText text={product.title} />
+
             <div className="flex items-center gap-1">
-              <Image src={iconsObject.riyal || "/placeholder.svg"} alt="SAR" width={12} height={12} />
-              <span className="text-sm font-normal text-[#212121]">{product.price}</span>
+              <Image
+                src={iconsObject.riyal || "/placeholder.svg"}
+                alt="SAR"
+                width={12}
+                height={12}
+              />
+              <CustomText text={`${product.price}`} />
             </div>
           </div>
         ))}
       </div>
 
-      {/* Mobile Carousel */}
       <div className="related-products__carousel">
         <div className="related-products__carousel-wrapper">
-          <div className="related-products__carousel-track">
-            <div
-              className="related-products__carousel-slides"
-              style={{ transform: `translateX(-${currentIndex * 100}%)` }}
-            >
+          <div className="related-products__carousel-track" ref={scrollRef}>
+            <div className="related-products__carousel-slides">
               {displayProducts.map((product) => (
-                <div key={product.id} className="related-products__carousel-slide">
-                  <div className="group cursor-pointer">
-                    <div className="relative aspect-[3/4] mb-3 overflow-hidden bg-[#C8B5A0]">
+                <div
+                  key={product.id}
+                  className="related-products__carousel-slide"
+                >
+                  <div className="related-products__product-card">
+                    <div className="related-products__product-image">
                       <Image
                         src={product.image || "/placeholder.svg"}
                         alt={product.title}
@@ -81,59 +107,41 @@ export const RelatedProducts: React.FC<RelatedProductsProps> = ({ products }) =>
                         className="object-cover"
                       />
                       {product.badge && (
-                        <div className="absolute top-2 left-2 bg-white px-2.5 py-1 text-xs font-normal text-[#212121]">
+                        <div className="related-products__product-badge">
                           {product.badge}
                         </div>
                       )}
                     </div>
-                    <h3 className="text-sm font-normal text-[#212121] mb-1">{product.title}</h3>
-                    <div className="flex items-center gap-1">
-                      <Image src={iconsObject.riyal || "/placeholder.svg"} alt="SAR" width={12} height={12} />
-                      <span className="text-sm font-normal text-[#212121]">{product.price}</span>
+                    <CustomText
+                      text={product.title}
+                      className="related-products__product-title"
+                    />
+                    <div className="related-products__product-price">
+                      <Icon name={iconsObject.riyal} width={12} height={12} />
+                      <CustomText text={`${product?.price}`} />
                     </div>
                   </div>
                 </div>
               ))}
             </div>
           </div>
-
-          <button
-            onClick={prevSlide}
-            className="related-products__nav-button related-products__nav-button--prev"
-            aria-label="Previous"
-          >
-            <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-              <path
-                d="M12 4L6 10L12 16"
-                stroke="#212121"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-            </svg>
-          </button>
-          <button
-            onClick={nextSlide}
-            className="related-products__nav-button related-products__nav-button--next"
-            aria-label="Next"
-          >
-            <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-              <path d="M8 4L14 10L8 16" stroke="#212121" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-            </svg>
-          </button>
         </div>
 
         <div className="related-products__indicators">
           {displayProducts.map((_, index) => (
             <button
               key={index}
-              onClick={() => setCurrentIndex(index)}
-              className={`related-products__indicator ${index === currentIndex ? "related-products__indicator--active" : ""}`}
+              onClick={() => scrollToItem(index)}
+              className={`related-products__indicator ${
+                index === activeIndex
+                  ? "related-products__indicator--active"
+                  : ""
+              }`}
               aria-label={`Go to slide ${index + 1}`}
             />
           ))}
         </div>
       </div>
     </section>
-  )
-}
+  );
+};

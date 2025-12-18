@@ -1,7 +1,6 @@
 export const en = {
   header: {
-    promoText: "Get 10% off your first order with code",
-    code: "NEW!",
+    promoText: "Get 10% off your first order with code NEW!",
     dresses: "Dresses",
     tops: "Tops",
     occasion: "Occasion dresses",
@@ -21,7 +20,7 @@ export const en = {
     buyNow: "Buy it Now",
     addToCart: "Add to Cart",
     promoText:
-      "For a 10% off of your first order and for a limited time only use code:",
+      "For a 10% off of your first order and for a limited time only use code: ",
     deliveryWithin: "Delivery within 1-2 business days to",
     freeReturn: "free return",
     inKSA: "in KSA within 7 days of delivery",
@@ -44,9 +43,10 @@ export const en = {
     ironLowTemp: "Iron at a low temperature if needed",
     saudiArabia: "Saudi Arabia",
     restOfWorld: "Rest of The World",
-    freeReturnText:
-      "You can request a free return within Saudi Arabia up to 7 days after receiving your order",
-    freeDeliveryText: "Free delivery for orders over 400 SAR",
+    youCanRequest: "You can request a ",
+    freeReturn: "free return ",
+    deliveryDays: "within Saudi Arabia up to 7 days after receiving your order",
+    deliveryDate: "Delivery within 1-2 business days ",
     noRefundText:
       "Aleena clothing products purchased during offers and discounts are not refundable under any circumstances.",
     riyadh: "Riyadh",

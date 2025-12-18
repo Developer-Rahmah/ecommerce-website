@@ -23,7 +23,7 @@ export const LanguageProvider: React.FC<{ children: React.ReactNode }> = ({
 
   const t = (key: string, params?: Record<string, string | number>): string => {
     const keys = key.split(".");
-    let value: any = translations[language];
+    let value = translations[language];
 
     for (const k of keys) {
       if (value && typeof value === "object" && k in value) {

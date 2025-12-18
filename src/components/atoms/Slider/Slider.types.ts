@@ -1,6 +1,7 @@
 export interface SliderProps {
-  value: number
-  onChange: (value: number) => void
-  labels: string[]
-  className?: string
+  title?: string;
+  value: number;
+  onChange: (value: number) => void;
+  labels: string[];
+  className?: string;
 }

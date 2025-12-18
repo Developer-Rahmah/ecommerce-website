@@ -11,6 +11,7 @@ export interface ProductData {
   sizes: string[];
   colors: string[];
   description: string;
+  promoCode: string;
   material: {
     stretch: number;
     lining: number;
@@ -22,16 +23,17 @@ export interface ProductData {
     ironLowTemp: boolean;
   };
   delivery: {
-    locations: {
-      name: string;
-      days: string;
-    }[];
+    locations: DeliveryLocation[];
     freeDeliveryThreshold: number;
   };
   returnPolicies: string[];
   relatedProducts: RelatedProduct[];
 }
 
+export interface DeliveryLocation {
+  name: string;
+  days: string;
+}
 export interface RelatedProduct {
   id: string;
   name: string;
@@ -46,15 +48,31 @@ const delay = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
 // Mock product data
 const mockProductData: ProductData = {
   id: "prod-001",
-  name: "White Bare Shoulder Crepe Midi Dress",
+  name: "Purple Velvet Maxi Dress with Chiffon Godets",
   price: 521,
   currency: "SAR",
   rating: 521,
+  promoCode: "NEW",
+  // In productService.ts, update the mockProductData images array:
   images: [
-    "/white-elegant-midi-dress-model.jpg",
-    "/white-elegant-midi-dress-model-side-view.jpg",
-    "/white-elegant-midi-dress-detail-view.jpg",
-    "/white-elegant-midi-dress-back-view.jpg",
+    {
+      src: "/white-elegant-midi-dress-model-right-view.png",
+      type: "video",
+      videoSrc: "/videos/red-elegant-midi-dress-model.mp4",
+    },
+
+    {
+      src: "/white-elegant-midi-dress-model-right-view.png",
+      type: "image",
+    },
+    {
+      src: "/white-elegant-midi-dress-model-side-view.jpg",
+      type: "image",
+    },
+    {
+      src: "/white-elegant-midi-dress-detail-view.jpg",
+      type: "image",
+    },
   ],
   sizes: ["XS", "S", "M", "L", "XL", "XXL"],
   colors: ["white", "black", "beige"],
@@ -72,10 +90,12 @@ const mockProductData: ProductData = {
   },
   delivery: {
     locations: [
-      { name: "Riyadh", days: "1-2" },
-      { name: "Dammam", days: "2-3" },
-      { name: "Jeddah", days: "2-3" },
-      { name: "Other Cities", days: "3-5" },
+      { name: "Riyadh", days: "1-2 " },
+      { name: "Dammam", days: "2-3 " },
+      { name: "Jeddah", days: "2-3 " },
+      { name: "Makkah", days: "3-4 " },
+      { name: "Medina", days: "3-4 " },
+      { name: "Other Cities", days: "5-7 " },
     ],
     freeDeliveryThreshold: 400,
   },
@@ -88,51 +108,52 @@ const mockProductData: ProductData = {
   relatedProducts: [
     {
       id: "prod-002",
-      name: "White Bare Shoulder Crepe Midi Dress",
+      name: "Purple Velvet Maxi Dress with Chiffon Godets",
       price: 521,
-      image: "/white-elegant-midi-dress-model.jpg",
+      image: "/white-elegant-midi-dress-model.png",
       newArrival: true,
     },
+
     {
       id: "prod-003",
-      name: "White Bare Shoulder Crepe Midi Dress",
+      name: "Purple Velvet Maxi Dress with Chiffon Godets",
       price: 521,
-      image: "/white-elegant-midi-dress-model.jpg",
+      image: "/white-elegant-midi-dress-model.png",
       newArrival: true,
     },
     {
       id: "prod-004",
-      name: "White Bare Shoulder Crepe Midi Dress",
+      name: "Purple Velvet Maxi Dress with Chiffon Godets",
       price: 521,
-      image: "/white-elegant-midi-dress-model.jpg",
+      image: "/white-elegant-midi-dress-model.png",
       newArrival: true,
     },
     {
       id: "prod-005",
-      name: "White Bare Shoulder Crepe Midi Dress",
+      name: "Purple Velvet Maxi Dress with Chiffon Godets",
       price: 521,
-      image: "/white-elegant-midi-dress-model.jpg",
+      image: "/white-elegant-midi-dress-model.png",
       newArrival: true,
     },
     {
       id: "prod-006",
-      name: "White Bare Shoulder Crepe Midi Dress",
+      name: "Purple Velvet Maxi Dress with Chiffon Godets",
       price: 521,
-      image: "/white-elegant-midi-dress-model.jpg",
+      image: "/white-elegant-midi-dress-model.png",
       newArrival: true,
     },
     {
       id: "prod-007",
-      name: "White Bare Shoulder Crepe Midi Dress",
+      name: "Purple Velvet Maxi Dress with Chiffon Godets",
       price: 521,
-      image: "/white-elegant-midi-dress-model.jpg",
+      image: "/white-elegant-midi-dress-model.png",
       newArrival: true,
     },
     {
       id: "prod-008",
-      name: "White Bare Shoulder Crepe Midi Dress",
+      name: "Purple Velvet Maxi Dress with Chiffon Godets",
       price: 521,
-      image: "/white-elegant-midi-dress-model.jpg",
+      image: "/white-elegant-midi-dress-model.png",
       newArrival: true,
     },
   ],

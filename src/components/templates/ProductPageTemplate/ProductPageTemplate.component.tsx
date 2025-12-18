@@ -14,12 +14,17 @@ import {
   type ProductData,
 } from "@/src/services/api/productService";
 import { TopBanner } from "../../organisms/TopBanner";
+import Link from "next/link";
+import CustomText from "../../atoms/CustomText";
+import { useMobileView } from "@/hooks/use-mobile";
+import { MobileSearchBanner } from "../../molecules/MobileSearchBanner/MobileSearchBanner.component";
 
 export const ProductPageTemplate: React.FC<ProductPageTemplateProps> = ({
   className = "",
 }) => {
   const [productData, setProductData] = useState<ProductData | null>(null);
   const [isLoading, setIsLoading] = useState(true);
+  const isMobileView = useMobileView(768);
 
   useEffect(() => {
     const fetchProductData = async () => {
@@ -48,20 +53,24 @@ export const ProductPageTemplate: React.FC<ProductPageTemplateProps> = ({
   return (
     <div className={`product-page ${className}`}>
       <Header />
+      {isMobileView ? <MobileSearchBanner /> : null}
+
       <TopBanner />
-      <nav className="product-page__breadcrumb">
-        <a href="/" className="product-page__breadcrumb-link">
-          Home
-        </a>
-        {" / "}
-        <a href="/dresses" className="product-page__breadcrumb-link">
-          Dresses
-        </a>
-        {" / "}
-        <span className="product-page__breadcrumb-current">
-          {productData.name}
-        </span>
-      </nav>
+      {!isMobileView ? (
+        <nav className="product-page__breadcrumb">
+          <Link href="/" className="product-page__breadcrumb-link">
+            Home
+          </Link>
+          {" / "}
+          <a href="/dresses" className="product-page__breadcrumb-link">
+            Dresses
+          </a>
+          {" / "}
+          <CustomText className="product-page__breadcrumb-current">
+            {productData.name}
+          </CustomText>
+        </nav>
+      ) : null}
 
       <div className="product-page__content">
         <div className="product-page__main">
@@ -72,8 +81,7 @@ export const ProductPageTemplate: React.FC<ProductPageTemplateProps> = ({
           <ProductInfoSection
             productName={productData.name}
             price={productData.price}
-            currency={productData.currency}
-            rating={productData.rating}
+            promoCode={productData.promoCode}
           />
         </div>
 

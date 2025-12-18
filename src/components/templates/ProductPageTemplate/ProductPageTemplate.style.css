@@ -4,17 +4,18 @@
 }
 
 .product-page__breadcrumb {
-  max-width: 1280px;
+  max-width: 80rem;
   margin: 0 auto;
-  padding: var(--spacing-3) var(--spacing-4);
+  padding: var(--spacing-2xl) var(--spacing-2xl);
   font-size: var(--font-size-xs);
   color: var(--color-text-secondary);
 }
 
 @media (min-width: 1024px) {
   .product-page__breadcrumb {
-    padding: var(--spacing-4) var(--spacing-4);
+    padding: var(--spacing-md);
     font-size: var(--font-size-sm);
+    padding: var(--spacing-2xl) var(--spacing-2xl);
   }
 }
 
@@ -32,56 +33,63 @@
 }
 
 .product-page__content {
-  max-width: 1280px;
+  flex: 1;
+  padding-left: var(--spacing-3xl);
+  padding-right: var(--spacing-3xl);
   margin: 0 auto;
-  padding: 0 var(--spacing-4) var(--spacing-8);
 }
 
 @media (min-width: 1024px) {
   .product-page__content {
-    padding-bottom: var(--spacing-12);
+    padding-bottom: var(--spacing-6xl);
+    padding-left: 12.5rem;
+    padding-right: 12.5rem;
   }
 }
 
 .product-page__main {
   display: grid;
   grid-template-columns: 1fr;
-  gap: var(--spacing-6);
+  gap: var(--spacing-2xl);
 }
 
 @media (min-width: 1024px) {
   .product-page__main {
     grid-template-columns: repeat(2, 1fr);
-    gap: var(--spacing-12);
+    gap: var(--spacing-3xl);
   }
 }
 
 .product-page__details {
-  margin-top: var(--spacing-8);
+  margin-top: var(--spacing-4xl);
 }
 
 @media (min-width: 1024px) {
   .product-page__details {
-    margin-top: var(--spacing-12);
+    margin-top: var(--spacing-6xl);
   }
 }
 
 .product-page__related {
-  background: #fafafa;
-  padding: var(--spacing-12) 0;
+  padding: var(--spacing-md) 0;
 }
 
 .product-page__related-container {
-  max-width: 1280px;
   margin: 0 auto;
-  padding: 0 var(--spacing-4);
+  padding: 0 11.25rem;
 }
 
-/* Added loading state styles */
+@media (max-width: 1024px) {
+  .product-page__related-container {
+    padding: 0 var(--spacing-base);
+  }
+}
+
+/* Loading state styles */
 .product-page__loading {
-  max-width: 1280px;
+  max-width: 80rem;
   margin: 0 auto;
-  padding: var(--spacing-12) var(--spacing-4);
+  padding: var(--spacing-6xl) var(--spacing-lg);
   text-align: center;
   font-size: var(--font-size-lg);
   color: var(--color-text-secondary);

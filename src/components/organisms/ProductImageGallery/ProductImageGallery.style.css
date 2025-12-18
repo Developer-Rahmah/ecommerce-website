@@ -1,38 +1,43 @@
 .gallery {
   display: flex;
   flex-direction: column;
-  gap: var(--spacing-3);
+  gap: var(--spacing-xl);
 }
 
 @media (min-width: 768px) {
   .gallery {
-    gap: var(--spacing-4);
+    gap: var(--spacing-xl);
   }
 }
 
 .gallery__main-image {
   position: relative;
-  aspect-ratio: 3 / 4;
-  width: 100%;
-  background-color: #c8b5a0;
+  background-color: var(--color-background-product);
   overflow: hidden;
+  aspect-ratio: 440 / 560;
+}
+
+/* ✅ Mobile only */
+@media (max-width: 767px) {
+  .gallery__main-image {
+    width: 100vw;
+    margin-left: calc(50% - 50vw);
+  }
 }
 
 .gallery__thumbnails {
   display: flex;
-  gap: var(--spacing-2);
+  gap: var(--spacing-lg);
   overflow-x: auto;
-  padding-bottom: var(--spacing-2);
+  padding-bottom: var(--spacing-xl);
+  justify-content: center;
 }
 
 .gallery__thumbnail {
   position: relative;
-  width: 64px;
-  height: 64px;
+  width: 4rem;
+  height: 4rem;
   flex-shrink: 0;
-  border: 2px solid var(--color-border-light);
-  transition: border-color 0.2s ease;
-  overflow: hidden;
   background: transparent;
   cursor: pointer;
   padding: 0;
@@ -40,15 +45,85 @@
 
 @media (min-width: 768px) {
   .gallery__thumbnail {
-    width: 80px;
-    height: 80px;
+    width: 5rem;
+    height: 5rem;
   }
 }
 
 .gallery__thumbnail--active {
-  border-color: var(--color-text-primary);
+  border-bottom: 2px solid var(--color-text-primary);
 }
 
-.gallery__thumbnail:hover:not(.gallery__thumbnail--active) {
-  border-color: var(--color-text-secondary);
+/* Existing styles remain, add these at the end */
+
+/* Mobile Navigation Buttons */
+.gallery__nav-button {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 40px;
+  height: 40px;
+  /* border-radius: 50%; */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 10;
+  transition: all 0.2s ease;
+}
+
+.gallery__nav-button:hover {
+  background-color: rgb(224 238 237);
+  transform: translateY(-50%) scale(1.05);
+}
+
+.gallery__nav-button--prev {
+  left: var(--spacing-base);
+}
+
+.gallery__nav-button--next {
+  right: var(--spacing-base);
+}
+
+.gallery__nav-icon {
+  width: 16px;
+  height: 16px;
+  fill: var(--color-text-primary);
+}
+
+/* Video overlay for thumbnails */
+.gallery__thumbnail-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.gallery__video-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.3);
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.gallery__video-play-icon {
+  width: 16px;
+  height: 16px;
+  fill: var(--color-white);
+}
+
+/* Mobile dots indicator */
+.gallery__dots {
+  position: absolute;
+  bottom: var(--spacing-base);
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: var(--spacing-sm);
+  z-index: 10;
 }

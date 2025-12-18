@@ -1,68 +1,75 @@
-"use client"
+"use client";
 
-import type React from "react"
-import { useState } from "react"
-import Image from "next/image"
-import type { ProductInfoSectionProps } from "./ProductInfoSection.types"
-import "./ProductInfoSection.style.css"
-import { iconsObject } from "@/src/assets/icons/iconsObject"
+import type React from "react";
+import { useState } from "react";
+import type { ProductInfoSectionProps } from "./ProductInfoSection.types";
+import "./ProductInfoSection.style.css";
+import iconsObject from "@/src/assets/icons/iconsObject";
+import CustomText, { TextVariant } from "../../atoms/CustomText";
+import { Button } from "../../atoms/Button";
+import { ButtonVariant } from "../../atoms/Button/Button.types";
+import { useLanguage } from "@/src/contexts/LanguageContext";
+import { Icon } from "../../atoms/Icon";
 
 export const ProductInfoSection: React.FC<ProductInfoSectionProps> = ({
   productName,
   price,
-  currency = "SAR",
-  rating = 521,
+  promoCode,
 }) => {
-  const [selectedSize, setSelectedSize] = useState("S")
-  const [selectedCity, setSelectedCity] = useState("Riyadh")
-  const sizes = ["XS", "S", "M", "L", "XL", "XXL"]
+  const [selectedSize, setSelectedSize] = useState("S");
+  const [selectedCity, setSelectedCity] = useState("Riyadh");
+  const sizes = ["XS", "S", "M", "L", "XL", "XXL"];
+  const { t } = useLanguage();
 
   return (
     <div className="product-info">
       <div className="product-info__header">
         <div className="product-info__title-wrapper">
-          <h1 className="product-info__title">{productName}</h1>
+          <CustomText className="product-info__title">{`${productName}`}</CustomText>
         </div>
         <div className="product-info__rating">
-          <Image src={iconsObject.starFilled || "/placeholder.svg"} alt="Rating" width={16} height={16} />
-          <span className="product-info__rating-text">{rating}</span>
+          <Icon name={iconsObject.riyal} />
+          <CustomText variant={TextVariant.HEADING2}>{price}</CustomText>
         </div>
       </div>
 
       <div className="product-info__sizes">
         {sizes.map((size) => (
-          <button
+          <Button
             key={size}
             onClick={() => setSelectedSize(size)}
-            className={`product-info__size-button ${selectedSize === size ? "product-info__size-button--active" : ""}`}
+            className={`product-info__size-button ${
+              selectedSize === size ? "product-info__size-button--active" : ""
+            }`}
           >
             {size}
-          </button>
+          </Button>
         ))}
       </div>
 
       <div className="product-info__buttons">
-        <button className="product-info__button product-info__button--secondary">Buy it Now</button>
-        <button className="product-info__button product-info__button--primary">Add to Cart</button>
+        <Button customBtnType={ButtonVariant.SECONDARY}>
+          {t("product.buyNow")}
+        </Button>
+        <Button customBtnType={ButtonVariant.PRIMARY}>
+          {t("product.addToCart")}
+        </Button>
       </div>
 
       <div className="product-info__promo">
-        <Image
-          src={iconsObject.tagPromo || "/placeholder.svg"}
-          alt="Promo"
-          width={18}
-          height={18}
-          className="product-info__promo-icon"
-        />
-        <p className="product-info__promo-text">
-          For a 10% off of your first order and for a limited time only use code:{" "}
-          <span className="product-info__promo-code">NEW</span>
-        </p>
+        <Icon name={iconsObject.sale} className="product-info__promo-icon" />
+        <div className="promo-desc-container">
+          <CustomText
+            variant={TextVariant.BODY}
+            text={t("product.promoText")}
+          />
+          <CustomText variant={TextVariant.HEADING2} text={promoCode} />
+        </div>
       </div>
 
       <div className="product-info__delivery">
         <div className="product-info__delivery-line">
-          <span>Delivery within 1-2 business days to</span>
+          <CustomText text={t("productDetails.deliveryDate")} />
           <select
             value={selectedCity}
             onChange={(e) => setSelectedCity(e.target.value)}
@@ -74,11 +81,16 @@ export const ProductInfoSection: React.FC<ProductInfoSectionProps> = ({
             <option value="Other Cities">Other Cities</option>
           </select>
         </div>
-        <p className="product-info__return-text">
-          You can request a <span className="product-info__return-highlight">free return</span> in KSA within 7 days of
-          delivery
-        </p>
+
+        <div className="product-info__return-text">
+          <CustomText text={t("productDetails.youCanRequest")} />
+          <CustomText
+            variant={TextVariant.HEADING2}
+            text={t("productDetails.freeReturn")}
+          />
+          <CustomText text={t("productDetails.deliveryDays")} />
+        </div>
       </div>
     </div>
-  )
-}
+  );
+};

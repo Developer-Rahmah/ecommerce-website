@@ -4,6 +4,8 @@ import { Geist, Geist_Mono } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
 import { LanguageProvider } from "@/src/contexts/LanguageContext";
 import "./globals.css";
+// import { Satoshi } from "../src/assets/fonts/satoshi";
+import localFont from "next/font/local";
 
 const _geist = Geist({ subsets: ["latin"] });
 const _geistMono = Geist_Mono({ subsets: ["latin"] });
@@ -20,8 +22,19 @@ export const metadata: Metadata = {
       },
     ],
   },
+    generator: 'v0.app'
 };
 
+// Load local Satoshi font
+const satoshi = localFont({
+  src: [
+    {
+      path: "../src/assets/fonts/Satoshi-Regular.otf",
+      style: "normal",
+    },
+  ],
+  variable: "--font-satoshi",
+});
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -29,7 +42,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`font-sans antialiased`}>
+      <body className={`${satoshi.variable}`}>
+        {/* <body className={`${satoshi.variable} font-sans`}> */}
+
         <LanguageProvider>
           {children}
           <Analytics />

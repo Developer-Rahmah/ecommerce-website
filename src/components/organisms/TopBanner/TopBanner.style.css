@@ -1,26 +1,26 @@
 .top-banner {
   background: var(--color-text-primary);
   color: var(--color-white);
-  padding: var(--spacing-3) 0;
+  padding: var(--spacing-xs) 0;
 }
 
 .top-banner__container {
   max-width: 1280px;
   margin: 0 auto;
-  padding: 0 var(--spacing-4);
+  padding: 0 var(--spacing-md);
 }
 
 .top-banner__content {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: var(--spacing-6);
+  gap: var(--spacing-3xl);
+  padding: var(--spacing-md);
   font-size: var(--font-size-xs);
 }
 
 @media (min-width: 768px) {
   .top-banner__content {
-    gap: var(--spacing-12);
     font-size: var(--font-size-sm);
   }
 }
@@ -28,7 +28,7 @@
 .top-banner__item {
   display: flex;
   align-items: center;
-  gap: var(--spacing-2);
+  gap: var(--spacing-sm);
 }
 
 .top-banner__item--hidden-mobile {

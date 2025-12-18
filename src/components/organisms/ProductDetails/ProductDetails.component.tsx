@@ -11,9 +11,23 @@ import type {
   LocationType,
 } from "./ProductDetails.types";
 import styles from "./ProductDetails.module.css";
-import { iconsObject } from "@/src/assets/icons/iconsObject";
-import CustomText from "../../atoms/CustomText";
-import { TypographyVariants } from "@/src/styles/typography";
+import CustomText, { TextVariant } from "../../atoms/CustomText";
+import { Button } from "../../atoms/Button";
+import { Icon } from "../../atoms/Icon";
+import iconsObject from "@/src/assets/icons/iconsObject";
+
+const MOBILE_SECTION_ORDER: AccordionSection[] = [
+  "material",
+  "cleaning",
+  "return",
+  "description",
+];
+const DESKTOP_SECTION_ORDER: AccordionSection[] = [
+  "material",
+  "cleaning",
+  "description",
+  "return",
+];
 
 export const ProductDetails: React.FC<ProductDetailsProps> = ({
   className = "",
@@ -22,6 +36,7 @@ export const ProductDetails: React.FC<ProductDetailsProps> = ({
   const [openSections, setOpenSections] = useState<AccordionSection[]>([
     "material",
   ]);
+
   const [selectedLocation, setSelectedLocation] =
     useState<LocationType>("saudi");
   const [stretchValue, setStretchValue] = useState(
@@ -40,259 +55,284 @@ export const ProductDetails: React.FC<ProductDetailsProps> = ({
     );
   };
 
-  return (
-    <div className={`${styles["product-details-grid"]} ${className}`}>
-      {/* Material Details Section */}
-      <div className={styles["details-section"]}>
-        <button
-          onClick={() => toggleSection("material")}
-          className={styles["section-header"]}
-        >
-          <span className={styles["section-title"]}>
-            {t("productDetails.materialDetails")}
-          </span>
-          <Image
-            src={
-              openSections.includes("material")
-                ? iconsObject.minus
-                : iconsObject.plus
-            }
-            alt={openSections.includes("material") ? "Collapse" : "Expand"}
-            width={12}
-            height={12}
+  const MaterialSection = () => (
+    <div className={styles["details-section"]}>
+      <Button
+        onClick={() => toggleSection("material")}
+        className={styles["section-header"]}
+      >
+        <CustomText variant={TextVariant.HEADING2}>
+          {t("productDetails.materialDetails")}
+        </CustomText>
+        <Icon
+          name={
+            openSections.includes("material")
+              ? iconsObject.minus
+              : iconsObject.plus
+          }
+          width={12}
+          height={12}
+        />
+      </Button>
+      {openSections.includes("material") && (
+        <div className={styles["section-content"]}>
+          <Slider
+            title="Stretch"
+            value={stretchValue}
+            onChange={setStretchValue}
+            labels={[
+              t("productDetails.noStretch"),
+              t("productDetails.mediumStretch"),
+              t("productDetails.highStretch"),
+            ]}
           />
-        </button>
-        {openSections.includes("material") && (
-          <div className={styles["section-content"]}>
-            <Slider
-              value={stretchValue}
-              onChange={setStretchValue}
-              labels={[
-                t("productDetails.noStretch"),
-                t("productDetails.mediumStretch"),
-                t("productDetails.highStretch"),
-              ]}
-              className={styles["mb-6"]}
+
+          <Slider
+            value={liningValue}
+            title="Lining"
+            onChange={setLiningValue}
+            labels={[t("productDetails.noLining"), t("productDetails.lined")]}
+          />
+
+          <div>
+            <h4 className={styles["fabric-detail-title"]}>
+              {t("productDetails.fabricDetail")}
+            </h4>
+            <p className={styles["fabric-detail-text"]}>
+              {productData?.material.fabricType ?? t("productDetails.crepe")}
+            </p>
+            <Image
+              src={productData?.material.fabricImage || "/placeholder.svg"}
+              alt="Fabric texture"
+              width={400}
+              height={200}
+              className={styles["fabric-image"]}
             />
-
-            <div className={styles["content-divider"]} />
-
-            <Slider
-              value={liningValue}
-              onChange={setLiningValue}
-              labels={[t("productDetails.noLining"), t("productDetails.lined")]}
-              className={styles["mb-6"]}
-            />
-
-            <div className={styles["content-divider"]} />
-
-            <div>
-              <h4 className={styles["fabric-detail-title"]}>
-                {t("productDetails.fabricDetail")}
-              </h4>
-              <p className={styles["fabric-detail-text"]}>
-                {productData?.material.fabricType ?? t("productDetails.crepe")}
-              </p>
-              <Image
-                src={
-                  productData?.material.fabricImage ??
-                  "/white-crepe-fabric-texture-closeup.jpg"
-                }
-                alt="Fabric texture"
-                width={400}
-                height={200}
-                className={styles["fabric-image"]}
-              />
-            </div>
           </div>
-        )}
-      </div>
+        </div>
+      )}
+    </div>
+  );
 
-      {/* Cleaning Instructions Section */}
-      <div className={styles["details-section"]}>
-        <button
-          onClick={() => toggleSection("cleaning")}
-          className={`${styles["section-header"]} ${styles["with-left-padding"]}`}
+  const CleaningSection = () => (
+    <div className={styles["details-section"]}>
+      <Button
+        onClick={() => toggleSection("cleaning")}
+        className={`${styles["section-header"]} ${styles["with-left-padding"]}`}
+      >
+        <CustomText variant={TextVariant.HEADING2}>
+          {t("productDetails.cleaningInstructions")}
+        </CustomText>
+
+        <Icon
+          name={
+            openSections.includes("cleaning")
+              ? iconsObject.minus
+              : iconsObject.plus
+          }
+          width={12}
+          height={12}
+        />
+      </Button>
+      {openSections.includes("cleaning") && (
+        <div
+          className={`${styles["section-content"]} ${styles["with-left-padding"]}`}
+        >
+          <div className={styles["cleaning-item"]}>
+            <Icon name={iconsObject.noBleach} />
+            <CustomText
+              text={t("productDetails.doNotBleach")}
+              variant={TextVariant.BODY}
+            />
+          </div>
+          <div className={styles["content-divider"]} />
+          <div className={styles["cleaning-item"]}>
+            <Icon name={iconsObject.iron} />
+            <CustomText
+              text={t("productDetails.ironLowTemp")}
+              variant={TextVariant.BODY}
+            />
+          </div>
+          <div className={styles["separator"]} />
+        </div>
+      )}
+    </div>
+  );
+
+  const DescriptionSection = () => (
+    <div className={styles["details-section"]}>
+      <Button
+        onClick={() => toggleSection("description")}
+        className={`${styles["section-header"]} ${styles["with-left-padding"]}`}
+      >
+        <CustomText variant={TextVariant.HEADING2}>
+          {t("productDetails.description")}
+        </CustomText>
+        <Icon
+          name={
+            openSections.includes("description")
+              ? iconsObject.minus
+              : iconsObject.plus
+          }
+          width={12}
+          height={12}
+        />
+      </Button>
+      {openSections.includes("description") && (
+        <div
+          className={`${styles["section-content"]} ${styles["with-left-padding"]}`}
         >
           <CustomText
-            className={styles["section-title"]}
-            variant={TypographyVariants.TextsmRegular}
-            text={t("productDetails.cleaningInstructions")}
-          ></CustomText>
-          <Image
-            src={
-              openSections.includes("cleaning")
-                ? iconsObject.minus
-                : iconsObject.plus
+            text={
+              productData?.description ?? t("productDetails.descriptionText")
             }
-            alt={openSections.includes("cleaning") ? "Collapse" : "Expand"}
-            width={12}
-            height={12}
+            variant={TextVariant.BODY}
           />
-        </button>
-        {openSections.includes("cleaning") && (
-          <div
-            className={`${styles["section-content"]} ${styles["with-left-padding"]}`}
-          >
-            <div className={styles["cleaning-item"]}>
-              <Image
-                src={iconsObject.noBleach || "/placeholder.svg"}
-                alt="No bleach"
-                width={20}
-                height={20}
-                className={styles["cleaning-icon"]}
-              />
-              <span className={styles["cleaning-text"]}>
-                {t("productDetails.noBleach")}
-              </span>
-            </div>
-            <div className={styles["content-divider"]} />
-            <div className={styles["cleaning-item"]}>
-              <Image
-                src={iconsObject.iron || "/placeholder.svg"}
-                alt="Iron"
-                width={20}
-                height={20}
-                className={styles["cleaning-icon"]}
-              />
-              <span className={styles["cleaning-text"]}>
-                {t("productDetails.ironLow")}
-              </span>
+
+          <div className={styles["separator"]} />
+          <CustomText
+            variant={TextVariant.HEADING2}
+            text={t("productDetails.buyWholeSet")}
+          />
+
+          <div className={styles["buy-set-image-wrapper"]}>
+            <Image
+              src="/midi-printed-dress-with-puff-sleevesshopaleena.png"
+              alt="Yellow elegant dress"
+              width={240}
+              height={319}
+            />
+            <div className={styles["buy-set-overlay"]}>
+              <Button className={styles["buy-set-button"]}>
+                {t("productDetails.viewItem")}
+              </Button>
             </div>
           </div>
-        )}
-      </div>
+        </div>
+      )}
+    </div>
+  );
 
-      {/* Description Section */}
-      <div className={styles["details-section"]}>
-        <button
-          onClick={() => toggleSection("description")}
-          className={`${styles["section-header"]} ${styles["with-left-padding"]}`}
-        >
-          <span className={styles["section-title"]}>
-            {t("productDetails.description")}
-          </span>
-          <Image
-            src={
-              openSections.includes("description")
-                ? iconsObject.minus
-                : iconsObject.plus
-            }
-            alt={openSections.includes("description") ? "Collapse" : "Expand"}
-            width={12}
-            height={12}
-          />
-        </button>
-        {openSections.includes("description") && (
-          <div
-            className={`${styles["section-content"]} ${styles["with-left-padding"]}`}
-          >
-            <p className={styles["description-text"]}>
-              {productData?.description ?? t("productDetails.descriptionText")}
-            </p>
-
-            <div>
-              <h3 className={styles["buy-set-title"]}>
-                {t("productDetails.buyWholeSet")}
-              </h3>
-              <div className={styles["buy-set-image-wrapper"]}>
-                <Image
-                  src="/yellow-elegant-dress-model-full-body.jpg"
-                  alt="Yellow elegant dress"
-                  width={240}
-                  height={320}
-                />
-                <div className={styles["buy-set-overlay"]}>
-                  <button className={styles["buy-set-button"]}>
-                    {t("productDetails.viewItem")}
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-        )}
-      </div>
-
-      {/* Free Replacement and Return Section */}
-      <div className={styles["details-section"]}>
-        <button
-          onClick={() => toggleSection("return")}
-          className={`${styles["section-header"]} ${styles["with-left-padding"]}`}
-        >
-          <span className={styles["section-title"]}>
-            {t("productDetails.freeReplacementReturn")}
-          </span>
-          <Image
-            src={
+  const ReturnSection = () => (
+    <div className={`${styles["details-section"]} ${styles["return-section"]}`}>
+      <Button
+        onClick={() => toggleSection("return")}
+        className={`${styles["section-header"]} ${styles["with-left-padding"]}`}
+      >
+        <CustomText variant={TextVariant.HEADING2}>
+          {t("productDetails.freeReplacementReturn")}
+        </CustomText>
+        <span className={styles["section-icon"]}>
+          <Icon
+            name={
               openSections.includes("return")
                 ? iconsObject.minus
                 : iconsObject.plus
             }
-            alt={openSections.includes("return") ? "Collapse" : "Expand"}
             width={12}
             height={12}
           />
-        </button>
-        {openSections.includes("return") && (
-          <div
-            className={`${styles["section-content"]} ${styles["with-left-padding"]}`}
-          >
-            <div className={styles["toggle-wrapper"]}>
-              <span
-                className={`${styles["toggle-label"]} ${
-                  selectedLocation === "saudi" ? styles.active : styles.inactive
-                }`}
-              >
-                {t("productDetails.saudiArabia")}
-              </span>
-              <label className={styles["toggle-switch"]}>
-                <input
-                  type="checkbox"
-                  className={styles["toggle-input"]}
-                  checked={selectedLocation === "world"}
-                  onChange={() =>
-                    setSelectedLocation(
-                      selectedLocation === "saudi" ? "world" : "saudi"
-                    )
-                  }
-                />
-                <div className={styles["toggle-slider"]}>
-                  <div className={styles["toggle-thumb"]} />
-                </div>
-              </label>
-              <span
-                className={`${styles["toggle-label"]} ${
-                  selectedLocation === "world" ? styles.active : styles.inactive
-                }`}
-              >
-                {t("productDetails.restOfWorld")}
-              </span>
-            </div>
-
-            <ul className={styles["return-list"]}>
-              {productData?.returnPolicies.map((policy, index) => (
-                <li key={index} className={styles["return-list-item"]}>
-                  <span>•</span>
-                  <span>{policy}</span>
-                </li>
-              ))}
-            </ul>
-
-            <div className={styles["delivery-table"]}>
-              {productData?.delivery.locations.map((location) => (
-                <div key={location.name} className={styles["delivery-row"]}>
-                  <span className={styles["delivery-city"]}>
-                    {location.name}
-                  </span>
-                  <span className={styles["delivery-time"]}>
-                    {/* {t(`productDetails.deliveryWith`, { value: location.days })} */}
-                    {t("productDetails.deliveryTime", { value: location.days })}
-                  </span>
-                </div>
-              ))}
-            </div>
+        </span>
+      </Button>
+      {openSections.includes("return") && (
+        <div
+          className={`${styles["section-content"]} ${styles["with-left-padding"]}`}
+        >
+          <div className={styles["toggle-wrapper"]}>
+            <CustomText
+              variant={TextVariant.CAPTION_TITLE1}
+              className={`${styles["toggle-label"]} ${
+                selectedLocation === "saudi" ? styles.active : styles.inactive
+              }`}
+            >
+              {t("productDetails.saudiArabia")}
+            </CustomText>
+            <label className={styles["toggle-switch"]}>
+              <input
+                type="checkbox"
+                className={styles["toggle-input"]}
+                checked={selectedLocation === "world"}
+                onChange={() =>
+                  setSelectedLocation(
+                    selectedLocation === "saudi" ? "world" : "saudi"
+                  )
+                }
+              />
+              <div className={styles["toggle-slider"]}>
+                <div className={styles["toggle-thumb"]} />
+              </div>
+            </label>
+            <CustomText
+              variant={TextVariant.CAPTION_TITLE1}
+              className={`${styles["toggle-label"]} ${
+                selectedLocation === "world" ? styles.active : styles.inactive
+              }`}
+            >
+              {t("productDetails.restOfWorld")}
+            </CustomText>
           </div>
-        )}
+
+          <ul className={styles["return-list"]}>
+            {productData?.returnPolicies.map((policy, index) => (
+              <li key={index} className={styles["return-list-item"]}>
+                <span>•</span>
+                <CustomText variant={TextVariant.CAPTION_TITLE1}>
+                  {policy}
+                </CustomText>
+              </li>
+            ))}
+          </ul>
+
+          <div className={styles["delivery-table"]}>
+            {productData?.delivery.locations.map((location) => (
+              <div key={location.name} className={styles["delivery-row"]}>
+                <CustomText
+                  variant={TextVariant.HEADING2}
+                  className={styles["delivery-city"]}
+                >
+                  {location.name}
+                </CustomText>
+                <CustomText
+                  variant={TextVariant.CAPTION_TITLE1}
+                  className={styles["delivery-time"]}
+                >
+                  {t("productDetails.deliveryTime", { value: location.days })}
+                </CustomText>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+    </div>
+  );
+
+  const sectionComponents: Record<AccordionSection, React.ReactNode> = {
+    material: <MaterialSection key="material" />,
+    cleaning: <CleaningSection key="cleaning" />,
+    description: <DescriptionSection key="description" />,
+    return: <ReturnSection key="return" />,
+  };
+
+  return (
+    <div className={`${styles["product-details-grid"]} ${className}`}>
+      {/* Desktop layout - original order */}
+      {/* <div className={styles["desktop-layout"]}>
+        {DESKTOP_SECTION_ORDER.map((section) => sectionComponents[section])}
+      </div> */}
+      <div className={styles["desktop-layout"]}>
+        {sectionComponents.material}
+
+        <div className={styles["middle-column"]}>
+          {sectionComponents.cleaning}
+          {sectionComponents.return}
+        </div>
+
+        {sectionComponents.description}
+      </div>
+
+      {/* Mobile layout - reordered: Material, Cleaning, Free Replacement, Description */}
+      <div className={styles["mobile-layout"]}>
+        {MOBILE_SECTION_ORDER.map((section) => sectionComponents[section])}
       </div>
     </div>
   );

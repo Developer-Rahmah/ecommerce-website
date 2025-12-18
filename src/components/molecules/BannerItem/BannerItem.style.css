@@ -1,0 +1,15 @@
+.top-banner__item {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+}
+
+.top-banner__item--hidden-mobile {
+  display: none;
+}
+
+@media (min-width: 640px) {
+  .top-banner__item--hidden-mobile {
+    display: flex;
+  }
+}
