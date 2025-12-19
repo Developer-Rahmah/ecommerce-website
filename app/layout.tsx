@@ -1,14 +1,9 @@
 import type React from "react";
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
 import { LanguageProvider } from "@/src/contexts/LanguageContext";
 import "./globals.css";
-// import { Satoshi } from "../src/assets/fonts/satoshi";
 import localFont from "next/font/local";
-
-const _geist = Geist({ subsets: ["latin"] });
-const _geistMono = Geist_Mono({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "White Bare Shoulder Crepe Midi Dress - Aleena",
@@ -22,7 +17,7 @@ export const metadata: Metadata = {
       },
     ],
   },
-    generator: 'v0.app'
+  generator: "v0.app",
 };
 
 // Load local Satoshi font
@@ -43,8 +38,6 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${satoshi.variable}`}>
-        {/* <body className={`${satoshi.variable} font-sans`}> */}
-
         <LanguageProvider>
           {children}
           <Analytics />

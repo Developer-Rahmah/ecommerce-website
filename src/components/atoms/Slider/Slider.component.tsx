@@ -25,7 +25,6 @@ export const Slider: React.FC<SliderProps> = ({
 
   return (
     <div className={cn("w-full", className)}>
-      {/* Dynamic title from product data */}
       {title && (
         <CustomText
           variant={TextVariant.HEADING2}

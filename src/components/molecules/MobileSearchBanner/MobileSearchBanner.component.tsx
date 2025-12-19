@@ -1,4 +1,3 @@
-// components/MobileSearchBanner/MobileSearchBanner.component.tsx
 "use client";
 
 import type React from "react";
@@ -26,7 +25,6 @@ export const MobileSearchBanner: React.FC<MobileSearchBannerProps> = ({
             placeholder={t("header.search") || "Search"}
             className={styles["search-input"]}
           />
-          {/* Search Icon on the right */}
           <Button className={styles["search-button"]}>
             <Icon name={iconsObject.search} />
           </Button>

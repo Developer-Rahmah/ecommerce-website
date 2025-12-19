@@ -12,7 +12,7 @@
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 0;
-    align-items: start; /* ⬅️ STOP row height stretching */
+    align-items: start;
   }
 }
 
@@ -34,7 +34,6 @@
   padding-right: var(--spacing-sm);
 }
 
-/* Reduced spacing for return section to match Figma */
 @media (min-width: 1024px) {
   .return-section {
     grid-column: 2;
@@ -75,13 +74,13 @@
   padding-left: var(--spacing-3xl);
 }
 .section-icon {
-  width: 12px; /* lock width */
+  width: 12px;
   height: 12px;
   display: flex;
 
   align-items: center;
   justify-content: center;
-  flex-shrink: 0; /* prevent flex resizing */
+  flex-shrink: 0;
 }
 .mb-6 {
   margin-bottom: var(--spacing-xl);
@@ -149,12 +148,10 @@
     padding-top: 0 !important;
   }
 
-  /* Force grid rows to be independent */
   .product-details-grid .desktop-layout {
     grid-template-rows: min-content min-content !important;
   }
 }
-/* Reduced spacing for content divider to decrease gap between cleaning and return */
 .content-divider {
   height: 1px;
   background-color: var(--color-border);

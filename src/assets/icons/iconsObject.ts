@@ -1,13 +1,8 @@
-// Centralized icon management system
-// All icons are exported from this file to maintain consistency
-
 // UI Icons
 import plus from "./plus.svg";
 import minus from "./minus.svg";
 import search from "./search.svg";
-import user from "./user.svg";
 import shoppingBag from "./shopping-bag.svg";
-import wishlist from "./wishlist.svg";
 import dropdownArrow from "./dropdown-arrow.svg";
 import rightArrow from "./right-arrow.svg";
 import topArrow from "./top-arrow.svg";
@@ -19,9 +14,6 @@ import sale from "./sale.svg";
 import filledArrowDown from "./filled-arrow-down.svg";
 import userAvatar from "./user-avatar.svg";
 // Product Icons
-import starFilled from "./star-filled.svg";
-import starOutline from "./star-outline.svg";
-import tag from "./tag.svg";
 
 // Delivery & Shipping Icons
 import shippingTruck from "./shipping-truck.svg";
@@ -49,9 +41,7 @@ const iconsObject = {
   plus,
   minus,
   search,
-  user,
   shoppingBag,
-  wishlist,
   dropdownArrow,
   rightArrow,
   topArrow,
@@ -63,9 +53,6 @@ const iconsObject = {
   filledArrowDown,
   userAvatar,
   // Product Icons
-  starFilled,
-  starOutline,
-  tag,
   play,
   pause,
   next,
@@ -80,7 +67,6 @@ const iconsObject = {
 
   // Currency Icons
   riyal,
-
   // Country Flags Icons
   sarFlag,
   jodFlag,

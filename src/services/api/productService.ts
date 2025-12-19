@@ -39,11 +39,11 @@ export interface RelatedProduct {
   id: string;
   name: string;
   price: number;
-  image: StaticImageData;
+  image: string;
   newArrival: boolean;
 }
 export interface Images {
-  src: StaticImageData;
+  src: StaticImageData | string;
   type: string;
   videoSrc?: string;
 }
@@ -52,7 +52,7 @@ const delay = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
 // Mock product data
 const mockProductData: ProductData = {
   id: "prod-001",
-  name: "Purple Velvet Maxi Dress with Chiffon Godets",
+  name: "Aleena™ Silk+Bamboo Pillowcase (2 Pillowcases)",
   price: 521,
   currency: "SAR",
   rating: 521,
@@ -80,7 +80,7 @@ const mockProductData: ProductData = {
   sizes: ["XS", "S", "M", "L", "XL", "XXL"],
   colors: ["white", "black", "beige"],
   description:
-    "Indulge in luxurious elegance with our Bare shoulder Crepe Midi dress. Featuring a flattering bare shoulder design and crafted from high-quality crepe fabric, this dress exudes sophistication and exclusivity. Perfect for any occasion, it will be your go-to choice for effortless style and graceful charm.",
+    "Experience the ideal harmony of silk and bamboo with the Aleena™  Silk + Bamboo Pillowcase. One side features luxurious silk that helps to hydrate your skin and hair, while the other side is bamboo, known for its cooling and moisture-absorbing qualities. These pillowcases offer the ultimate comfort for a rejuvenating night’s sleep, combining elegance with sustainability.",
   material: {
     stretch: 0, // 0 = No Stretch, 50 = Medium, 100 = High
     lining: 100, // 0 = No Lining, 100 = Lined
@@ -111,7 +111,7 @@ const mockProductData: ProductData = {
   relatedProducts: [
     {
       id: "prod-002",
-      name: "Purple Velvet Maxi Dress with Chiffon Godets",
+      name: "Aleena™ Silk+Bamboo Pillowcase (2 Pillowcases)",
       price: 521,
       image: imagesObject.aleenaSingleSilkPillowcaseMain,
       newArrival: true,
@@ -119,42 +119,42 @@ const mockProductData: ProductData = {
 
     {
       id: "prod-003",
-      name: "Purple Velvet Maxi Dress with Chiffon Godets",
+      name: "Aleena™ Silk+Bamboo Pillowcase (2 Pillowcases)",
       price: 521,
       image: imagesObject.aleenaSingleSilkPillowcaseMain,
       newArrival: true,
     },
     {
       id: "prod-004",
-      name: "Purple Velvet Maxi Dress with Chiffon Godets",
+      name: "Aleena™ Silk+Bamboo Pillowcase (2 Pillowcases)",
       price: 521,
       image: imagesObject.aleenaSingleSilkPillowcaseMain,
       newArrival: true,
     },
     {
       id: "prod-005",
-      name: "Purple Velvet Maxi Dress with Chiffon Godets",
+      name: "Aleena™ Silk+Bamboo Pillowcase (2 Pillowcases)",
       price: 521,
       image: imagesObject.aleenaSingleSilkPillowcaseMain,
       newArrival: true,
     },
     {
       id: "prod-006",
-      name: "Purple Velvet Maxi Dress with Chiffon Godets",
+      name: "Aleena™ Silk+Bamboo Pillowcase (2 Pillowcases)",
       price: 521,
       image: imagesObject.aleenaSingleSilkPillowcaseMain,
       newArrival: true,
     },
     {
       id: "prod-007",
-      name: "Purple Velvet Maxi Dress with Chiffon Godets",
+      name: "Aleena™ Silk+Bamboo Pillowcase (2 Pillowcases)",
       price: 521,
       image: imagesObject.aleenaSingleSilkPillowcaseMain,
       newArrival: true,
     },
     {
       id: "prod-008",
-      name: "Purple Velvet Maxi Dress with Chiffon Godets",
+      name: "Aleena™ Silk+Bamboo Pillowcase (2 Pillowcases)",
       price: 521,
       image: imagesObject.aleenaSingleSilkPillowcaseMain,
       newArrival: true,

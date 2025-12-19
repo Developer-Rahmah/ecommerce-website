@@ -41,7 +41,7 @@
 
 @media (min-width: 1024px) {
   .product-page__content {
-    padding-bottom: var(--spacing-6xl);
+    padding-bottom: var(--spacing-2xl);
     padding-left: 12.5rem;
     padding-right: 12.5rem;
   }

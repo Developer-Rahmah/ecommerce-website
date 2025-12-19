@@ -1,11 +1,9 @@
-// import aleenaSingleSilkPillowcaseMain from "./aleena-single-silk-pillowcase-main.png";
 import aleenaSingleSilkPillowcase1 from "./aleena-single-silk-pillowcase-1.png";
 
 import aleenaSingleSilkPillowcase2 from "./aleena-single-silk-pillowcase-2.png";
 import aleenaSingleSilkPillowcase3 from "./aleena-single-silk-pillowcase-3.png";
 import aleenaSingleSilkPillowcase4 from "./aleena-single-silk-pillowcase-4.png";
 import aleenaSingleSilkPillowcase5 from "./aleena-single-silk-pillowcase-5.png";
-import midiPrintedDressWithPuffSleevesshopaleena from "./midi-printed-dress-with-puff-sleevesshopaleena.png";
 
 import aleenaSingleSilkPillowcase6 from "./aleena-single-silk-pillowcase-6.png";
 

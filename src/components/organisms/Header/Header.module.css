@@ -175,7 +175,6 @@
   z-index: 50;
 }
 
-/* Restructured header layout to prevent logo overlap */
 .header-main-container {
   margin: 0 auto;
   padding: 0 1rem;
@@ -214,7 +213,6 @@
   }
 }
 
-/* Nav takes flexible space, doesn't overlap logo */
 .nav-desktop {
   display: none;
   align-items: center;
@@ -265,7 +263,6 @@
   color: #d89285;
 }
 
-/* Logo centered in the middle column */
 .logo {
   grid-column: 3;
   justify-self: center;
@@ -285,7 +282,6 @@
   }
 }
 
-/* Header actions take flexible space on the right */
 .header-actions {
   display: flex;
   align-items: center;

@@ -1,3 +1,5 @@
+import { Images } from "@/src/services/api/productService";
+
 export interface GalleryItem {
   src: string;
   type: "image" | "video";
@@ -5,6 +7,6 @@ export interface GalleryItem {
 }
 
 export interface ProductImageGalleryProps {
-  images: string[] | GalleryItem[];
+  images: Images[];
   productName: string;
 }

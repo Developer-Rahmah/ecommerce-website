@@ -47,7 +47,6 @@
   }
 }
 
-/* Mobile carousel now shows horizontal scroll with multiple items visible */
 .related-products__carousel {
   display: block;
   padding: 0 var(--spacing-base);
@@ -97,20 +96,17 @@
   display: none;
 }
 
-/* Changed from single item to horizontal flex layout */
 .related-products__carousel-slides {
   display: flex;
   gap: var(--spacing-md);
 }
 
-/* Each slide takes ~45% width to show multiple items */
 .related-products__carousel-slide {
   flex: 0 0 45%;
   min-width: 45%;
   scroll-snap-align: start;
 }
 
-/* Removed navigation buttons for mobile - using swipe instead */
 .related-products__nav-button {
   display: none;
 }
@@ -172,7 +168,6 @@
   background-color: var(--color-white);
   font-weight: normal;
   margin: var(--spacing-lg);
-  /* font-size: 12; */
 }
 
 .related-products__product-title {

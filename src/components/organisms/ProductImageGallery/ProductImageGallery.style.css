@@ -17,7 +17,7 @@
   aspect-ratio: 440 / 560;
 }
 
-/* ✅ Mobile only */
+/* Mobile only */
 @media (max-width: 767px) {
   .gallery__main-image {
     width: 100vw;
@@ -53,8 +53,6 @@
 .gallery__thumbnail--active {
   border-bottom: 2px solid var(--color-text-primary);
 }
-
-/* Existing styles remain, add these at the end */
 
 /* Mobile Navigation Buttons */
 .gallery__nav-button {

@@ -1,4 +1,3 @@
-// src/components/atoms/CustomVideoPlayer/CustomVideoPlayer.component.tsx
 "use client";
 
 import type React from "react";
@@ -8,7 +7,6 @@ import iconsObject from "@/src/assets/icons/iconsObject";
 import "./CustomVideoPlayer.style.css";
 import { CustomVideoPlayerProps } from "./CustomVideoPlayer.types";
 import { Button } from "../Button";
-// import V from "../../../assets/videos/"
 export const CustomVideoPlayer: React.FC<CustomVideoPlayerProps> = ({
   videoSrc,
   posterSrc,

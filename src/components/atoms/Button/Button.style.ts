@@ -5,19 +5,13 @@ import { cva } from "class-variance-authority";
 export const baseButtonStyles =
   "inline-flex items-center justify-center rounded focus:outline-none  font-satoshi transition-colors";
 
-// Default dimensions
-export const defaultDimensions = "w-[377px] h-[49px]";
-
-// Default font size
-export const defaultFontSize = "text-[20px]";
-
 // Variant-specific styles
 export const variantStyles = cva(baseButtonStyles, {
   variants: {
     variant: {
-      primary: "bg-[#212121] text-[#FFFFFF] hover:bg-[#333333]  ",
+      primary: "bg-primary text-white hover:bg-btn-hover  ",
       secondary:
-        "bg-white text-[#212121] border-1 border-[#212121] hover:bg-gray-50 ",
+        "bg-white text-primary border-1 border-primary hover:bg-gray-50 ",
     },
     size: {
       [ButtonSize.SM]: "h-8 px-3 py-2 text-sm rounded-sm",

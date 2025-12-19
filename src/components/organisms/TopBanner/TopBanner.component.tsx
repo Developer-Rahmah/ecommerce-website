@@ -7,7 +7,6 @@ import { BannerItem } from "../../molecules/BannerItem/BannerItem.component";
 export const TopBanner: React.FC<TopBannerProps> = ({ className = "" }) => {
   const { t } = useLanguage();
 
-  // Define banner items in an array
   const bannerItems = [
     {
       id: "freeReturns",

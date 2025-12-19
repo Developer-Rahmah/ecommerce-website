@@ -1,7 +1,7 @@
 "use client";
 
 import type React from "react";
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef } from "react";
 import Image from "next/image";
 import { useLanguage } from "@/src/contexts/LanguageContext";
 import type { HeaderProps, Currency } from "./Header.types";
@@ -41,7 +41,6 @@ export const Header: React.FC<HeaderProps> = ({ className = "" }) => {
     CURRENCY_OPTIONS.find((c) => c.code === selectedCurrency) ||
     CURRENCY_OPTIONS[0];
 
-  // Use the helper hooks
   useClickOutside(
     [currencyDropdownRef, languageDropdownRef, mobileMenuRef],
     () => {
@@ -80,7 +79,7 @@ export const Header: React.FC<HeaderProps> = ({ className = "" }) => {
               </CustomText>
             </div>
             <div className={styles["promo-controls"]}>
-              {/* Currency Selector with ref */}
+              {/* Currency Selector */}
               <div
                 className={styles["currency-selector"]}
                 ref={currencyDropdownRef}
@@ -129,7 +128,7 @@ export const Header: React.FC<HeaderProps> = ({ className = "" }) => {
                 ) : null}
               </div>
 
-              {/* Language Selector with ref */}
+              {/* Language Selector with */}
               <div
                 className={styles["language-selector"]}
                 ref={languageDropdownRef}

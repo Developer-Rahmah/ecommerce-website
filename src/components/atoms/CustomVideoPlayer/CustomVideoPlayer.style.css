@@ -38,7 +38,7 @@
   width: 20px;
   height: 20px;
   fill: var(--color-text-primary);
-  margin-left: 2px; /* Slight offset for play triangle */
+  margin-left: 2px;
 }
 
 .custom-video-player__pause-overlay {

@@ -8,7 +8,7 @@ interface LanguageContextType {
   language: Language;
   setLanguage: (lang: Language) => void;
   isRTL: boolean;
-  t: (key: string, params?: Record<string, string | number>) => string;
+  t: (key: string, params?: Record<string, number | string>) => string;
 }
 
 const LanguageContext = createContext<LanguageContextType | undefined>(
@@ -23,11 +23,11 @@ export const LanguageProvider: React.FC<{ children: React.ReactNode }> = ({
 
   const t = (key: string, params?: Record<string, string | number>): string => {
     const keys = key.split(".");
-    let value = translations[language];
+    let value: unknown = translations[language];
 
     for (const k of keys) {
-      if (value && typeof value === "object" && k in value) {
-        value = value[k];
+      if (typeof value === "object" && value !== null && k in value) {
+        value = (value as Record<string, unknown>)[k];
       } else {
         return key;
       }
@@ -35,8 +35,7 @@ export const LanguageProvider: React.FC<{ children: React.ReactNode }> = ({
 
     let result = typeof value === "string" ? value : key;
 
-    // Replace placeholders with params if provided
-    if (params && typeof result === "string") {
+    if (params) {
       Object.entries(params).forEach(([paramKey, paramValue]) => {
         result = result.replace(`{{${paramKey}}}`, String(paramValue));
       });

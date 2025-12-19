@@ -13,14 +13,15 @@ import { Icon } from "../../atoms/Icon";
 import iconsObject from "@/src/assets/icons/iconsObject";
 import { CustomVideoPlayer } from "../../atoms/CustomVideoPlayer/CustomVideoPlayer.component";
 import { useMobileView } from "@/hooks/use-mobile";
+import { Images } from "@/src/services/api/productService";
 
 // Helper to normalize images array
-const normalizeImages = (images: string[] | GalleryItem[]): GalleryItem[] => {
+const normalizeImages = (images: Images[] | GalleryItem[]): GalleryItem[] => {
   if (images.length === 0) return [];
 
   // If it's a string array, convert to GalleryItem array
   if (typeof images[0] === "string") {
-    return (images as string[]).map((src, index) => ({
+    return (images as []).map((src, index) => ({
       src,
       type: index === 0 ? ("video" as const) : ("image" as const), // First one is video on mobile
       videoSrc: index === 0 ? "/videos/product-video.mp4" : undefined,
@@ -42,10 +43,8 @@ export const ProductImageGallery: React.FC<ProductImageGalleryProps> = ({
   const [currentMobileIndex, setCurrentMobileIndex] = useState(0);
   const isMobileView = useMobileView(768);
 
-  // Auto-play first video if it's the main image on mobile
   useEffect(() => {
     if (isMobileView && mainImage.item.type === "video") {
-      // Video will show play button, not auto-play
     }
   }, [mainImage, isMobileView]);
 

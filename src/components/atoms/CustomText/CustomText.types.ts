@@ -1,6 +1,5 @@
 import type { ArgumentArray } from "classnames";
 
-// Define the available HTML elements for the Text component
 type TextElement =
   | "h1"
   | "h2"
