@@ -8,7 +8,7 @@ import iconsObject from "@/src/assets/icons/iconsObject";
 import "./CustomVideoPlayer.style.css";
 import { CustomVideoPlayerProps } from "./CustomVideoPlayer.types";
 import { Button } from "../Button";
-
+// import V from "../../../assets/videos/"
 export const CustomVideoPlayer: React.FC<CustomVideoPlayerProps> = ({
   videoSrc,
   posterSrc,
@@ -36,7 +36,6 @@ export const CustomVideoPlayer: React.FC<CustomVideoPlayerProps> = ({
   const handleVideoEnd = () => {
     setIsPlaying(false);
   };
-
   return (
     <div className={`custom-video-player ${className}`}>
       <video

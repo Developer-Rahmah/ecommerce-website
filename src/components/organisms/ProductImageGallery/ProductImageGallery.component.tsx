@@ -69,7 +69,6 @@ export const ProductImageGallery: React.FC<ProductImageGalleryProps> = ({
       setCurrentMobileIndex(index);
     }
   };
-
   return (
     <div className="gallery">
       {/* Main Image/Video Area */}

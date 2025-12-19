@@ -1,5 +1,6 @@
-// Mock API service to demonstrate API fetching capabilities
-// In a real application, this would make actual HTTP requests
+import imagesObject from "@/src/assets/images/imagesObject";
+import videosObject from "@/src/assets/videos/videosObject";
+import { StaticImageData } from "next/image";
 
 export interface ProductData {
   id: string;
@@ -7,7 +8,7 @@ export interface ProductData {
   price: number;
   currency: string;
   rating: number;
-  images: string[];
+  images: Images[];
   sizes: string[];
   colors: string[];
   description: string;
@@ -16,7 +17,7 @@ export interface ProductData {
     stretch: number;
     lining: number;
     fabricType: string;
-    fabricImage: string;
+    fabricImage: StaticImageData;
   };
   cleaning: {
     noBleach: boolean;
@@ -38,13 +39,16 @@ export interface RelatedProduct {
   id: string;
   name: string;
   price: number;
-  image: string;
+  image: StaticImageData;
   newArrival: boolean;
 }
-
+export interface Images {
+  src: StaticImageData;
+  type: string;
+  videoSrc?: string;
+}
 // Simulating API delay
 const delay = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
-
 // Mock product data
 const mockProductData: ProductData = {
   id: "prod-001",
@@ -53,24 +57,23 @@ const mockProductData: ProductData = {
   currency: "SAR",
   rating: 521,
   promoCode: "NEW",
-  // In productService.ts, update the mockProductData images array:
   images: [
     {
-      src: "/white-elegant-midi-dress-model-right-view.png",
+      src: imagesObject.aleenaSingleSilkPillowcaseMain,
       type: "video",
-      videoSrc: "/videos/red-elegant-midi-dress-model.mp4",
+      videoSrc: videosObject.slik,
     },
 
     {
-      src: "/white-elegant-midi-dress-model-right-view.png",
+      src: imagesObject.aleenaSingleSilkPillowcase2,
       type: "image",
     },
     {
-      src: "/white-elegant-midi-dress-model-side-view.jpg",
+      src: imagesObject.aleenaSingleSilkPillowcase3,
       type: "image",
     },
     {
-      src: "/white-elegant-midi-dress-detail-view.jpg",
+      src: imagesObject.aleenaSingleSilkPillowcase4,
       type: "image",
     },
   ],
@@ -82,7 +85,7 @@ const mockProductData: ProductData = {
     stretch: 0, // 0 = No Stretch, 50 = Medium, 100 = High
     lining: 100, // 0 = No Lining, 100 = Lined
     fabricType: "Crepe",
-    fabricImage: "/white-crepe-fabric-texture-closeup.jpg",
+    fabricImage: imagesObject.aleenaSingleSilkPillowcase6,
   },
   cleaning: {
     noBleach: true,
@@ -110,7 +113,7 @@ const mockProductData: ProductData = {
       id: "prod-002",
       name: "Purple Velvet Maxi Dress with Chiffon Godets",
       price: 521,
-      image: "/white-elegant-midi-dress-model.png",
+      image: imagesObject.aleenaSingleSilkPillowcaseMain,
       newArrival: true,
     },
 
@@ -118,42 +121,42 @@ const mockProductData: ProductData = {
       id: "prod-003",
       name: "Purple Velvet Maxi Dress with Chiffon Godets",
       price: 521,
-      image: "/white-elegant-midi-dress-model.png",
+      image: imagesObject.aleenaSingleSilkPillowcaseMain,
       newArrival: true,
     },
     {
       id: "prod-004",
       name: "Purple Velvet Maxi Dress with Chiffon Godets",
       price: 521,
-      image: "/white-elegant-midi-dress-model.png",
+      image: imagesObject.aleenaSingleSilkPillowcaseMain,
       newArrival: true,
     },
     {
       id: "prod-005",
       name: "Purple Velvet Maxi Dress with Chiffon Godets",
       price: 521,
-      image: "/white-elegant-midi-dress-model.png",
+      image: imagesObject.aleenaSingleSilkPillowcaseMain,
       newArrival: true,
     },
     {
       id: "prod-006",
       name: "Purple Velvet Maxi Dress with Chiffon Godets",
       price: 521,
-      image: "/white-elegant-midi-dress-model.png",
+      image: imagesObject.aleenaSingleSilkPillowcaseMain,
       newArrival: true,
     },
     {
       id: "prod-007",
       name: "Purple Velvet Maxi Dress with Chiffon Godets",
       price: 521,
-      image: "/white-elegant-midi-dress-model.png",
+      image: imagesObject.aleenaSingleSilkPillowcaseMain,
       newArrival: true,
     },
     {
       id: "prod-008",
       name: "Purple Velvet Maxi Dress with Chiffon Godets",
       price: 521,
-      image: "/white-elegant-midi-dress-model.png",
+      image: imagesObject.aleenaSingleSilkPillowcaseMain,
       newArrival: true,
     },
   ],

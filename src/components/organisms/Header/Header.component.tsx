@@ -9,7 +9,7 @@ import styles from "./Header.module.css";
 import { Icon } from "../../atoms/Icon/index";
 import { Button } from "../../atoms/Button/index";
 import CustomText, { TextVariant } from "../../atoms/CustomText";
-import aleenaLogo from "../../../../public/aleena-logo.png";
+import aleenaLogo from "../../../assets/images/aleena-logo.png";
 import iconsObject from "@/src/assets/icons/iconsObject";
 import { useClickOutside, useEscapeKey } from "@/src/utils/helpers";
 import { useMobileView } from "@/hooks/use-mobile";
@@ -108,7 +108,7 @@ export const Header: React.FC<HeaderProps> = ({ className = "" }) => {
                 {isCurrencyDropdownOpen ? (
                   <div className={styles["currency-dropdown"]}>
                     {CURRENCY_OPTIONS.map((currency) => (
-                      <button
+                      <Button
                         key={currency.code}
                         className={`${styles["currency-option"]} ${
                           selectedCurrency === currency.code
@@ -120,10 +120,10 @@ export const Header: React.FC<HeaderProps> = ({ className = "" }) => {
                           setIsCurrencyDropdownOpen(false);
                         }}
                       >
-                        <span className={styles["currency-code"]}>
+                        <CustomText className={styles["currency-code"]}>
                           {currency.code}
-                        </span>
-                      </button>
+                        </CustomText>
+                      </Button>
                     ))}
                   </div>
                 ) : null}

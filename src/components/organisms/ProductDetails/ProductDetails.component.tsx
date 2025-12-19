@@ -15,18 +15,13 @@ import CustomText, { TextVariant } from "../../atoms/CustomText";
 import { Button } from "../../atoms/Button";
 import { Icon } from "../../atoms/Icon";
 import iconsObject from "@/src/assets/icons/iconsObject";
+import imagesObject from "@/src/assets/images/imagesObject";
 
 const MOBILE_SECTION_ORDER: AccordionSection[] = [
   "material",
   "cleaning",
   "return",
   "description",
-];
-const DESKTOP_SECTION_ORDER: AccordionSection[] = [
-  "material",
-  "cleaning",
-  "description",
-  "return",
 ];
 
 export const ProductDetails: React.FC<ProductDetailsProps> = ({
@@ -104,8 +99,8 @@ export const ProductDetails: React.FC<ProductDetailsProps> = ({
             <Image
               src={productData?.material.fabricImage || "/placeholder.svg"}
               alt="Fabric texture"
-              width={400}
-              height={200}
+              width={357}
+              height={150}
               className={styles["fabric-image"]}
             />
           </div>
@@ -197,7 +192,7 @@ export const ProductDetails: React.FC<ProductDetailsProps> = ({
 
           <div className={styles["buy-set-image-wrapper"]}>
             <Image
-              src="/midi-printed-dress-with-puff-sleevesshopaleena.png"
+              src={imagesObject.aleenaSingleSilkPillowcaseMain}
               alt="Yellow elegant dress"
               width={240}
               height={319}
