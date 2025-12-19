@@ -1,72 +1,27 @@
-# Aleena E-Commerce Product Page
+# Aleena - Product Page
 
-A professional Next.js 15 e-commerce product page built with atomic design principles, featuring bilingual support (English/Arabic) with RTL layout handling.
-
-## Project Structure
-
-\`\`\`
-project/
-├── app/                          # Next.js App Router
-│   ├── globals.css              # Global styles & Tailwind config
-│   ├── layout.tsx               # Root layout with providers
-│   └── page.tsx                 # Main product page
-├── src/
-│   ├── components/              # Atomic Design Structure
-│   │   ├── atoms/              # Basic building blocks
-│   │   │   └── Slider/         # Custom slider with step indicators
-│   │   ├── molecules/          # Composite components
-│   │   ├── organisms/          # Complex sections
-│   │   │   ├── Header/         # Main navigation header
-│   │   │   └── ProductDetails/ # Accordion product details
-│   │   └── templates/          # Page templates
-│   ├── contexts/               # React contexts
-│   │   └── LanguageContext.tsx # Language & RTL management
-│   ├── localization/           # Translation files
-│   │   ├── en.ts              # English translations
-│   │   ├── ar.ts              # Arabic translations
-│   │   └── index.ts           # Export aggregator
-│   ├── theme/                  # Design system
-│   │   ├── colors.ts          # Color palette
-│   │   ├── spacing.ts         # Spacing & padding values
-│   │   ├── typography.ts      # Font definitions
-│   │   └── index.ts           # Theme aggregator
-│   └── types/                  # TypeScript definitions
-├── public/                     # Static assets
-│   ├── icons/                 # SVG icons
-│   └── *.jpg                  # Product images
-└── README.md                   # This file
-\`\`\`
-
-## Design System
-
-### Colors
-- **Primary**: `#212121` (Black), `#FFFFFF` (White)
-- **Neutral**: `#F2F2F2`, `#FAFAFA`, `#DEDEDE`, `#A0A0A0`
-- **Accent**: `#96ECA3` (Green), `#ECA396` (Coral)
-
-### Typography
-- **Primary Font**: Geist Sans
-- **Mono Font**: Geist Mono
-- **Sizes**: 12px - 36px scale
-
-### Spacing
-- **Scale**: 4px, 8px, 16px, 24px, 32px, 48px, 64px
+A modern, responsive e-commerce product page built with Next.js 15, React 19, and TypeScript. This project showcases a luxury silk pillowcase product with full RTL (Right-to-Left) support for Arabic language.
 
 ## Features
 
-- ✅ Atomic Design architecture
-- ✅ TypeScript for type safety
-- ✅ Bilingual support (EN/AR)
-- ✅ RTL layout handling
-- ✅ Responsive design (mobile-first)
-- ✅ Custom slider component with step indicators
-- ✅ Accordion product details (horizontal layout)
-- ✅ Image gallery with thumbnails
-- ✅ Figma design implementation
+- **Responsive Design**: Fully responsive layout optimized for mobile, tablet, and desktop
+- **RTL Support**: Complete Arabic language support with RTL layout
+- **Product Gallery**: Interactive image gallery with video support
+- **Atomic Design**: Component architecture following Atomic Design principles
+- **Design Tokens**: Centralized design system with CSS custom properties
+- **Accessibility**: Semantic HTML and ARIA attributes for screen readers
 
-## Getting Started
+## Tech Stack
 
-\`\`\`bash
+- **Framework**: Next.js 15 (App Router)
+- **Language**: TypeScript
+- **Styling**: Tailwind CSS v4 + CSS Modules + CSS Custom Properties
+- **Font**: Satoshi (Local)
+- **Analytics**: Vercel Analytics
+
+## Quick Start
+
+```bash
 # Install dependencies
 npm install
 
@@ -75,39 +30,121 @@ npm run dev
 
 # Build for production
 npm run build
+```
 
-# Start production server
-npm start
-\`\`\`
+## Project Structure
 
-## Key Components
+```
+┌─────────────────────────────────────────────────────────────────────────────┐
+│                              ALEENA PROJECT                                 │
+│                         E-Commerce Product Page                             │
+├─────────────────────────────────────────────────────────────────────────────┤
+│                                                                             │
+│  ┌─────────────┐    ┌─────────────────────────────────────────────────┐    │
+│  │    app/     │    │                    src/                          │    │
+│  │  ─────────  │    │  ───────────────────────────────────────────────│    │
+│  │  • layout   │    │                                                  │    │
+│  │  • page     │    │  ┌─────────────────────────────────────────────┐│    │
+│  │  • globals  │    │  │              components/                    ││    │
+│  └─────────────┘    │  │  ─────────────────────────────────────────  ││    │
+│                     │  │                                             ││    │
+│  ┌─────────────┐    │  │  ┌───────────┐  ┌───────────┐  ┌─────────┐ ││    │
+│  │   public/   │    │  │  │  atoms/   │  │molecules/ │  │organisms│ ││    │
+│  │  ─────────  │    │  │  │ ───────── │  │ ───────── │  │─────────│ ││    │
+│  │  • images   │    │  │  │ • Button  │  │ • Banner  │  │• Header │ ││    │
+│  │  • videos   │    │  │  │ • Text    │  │   Item    │  │• Product│ ││    │
+│  │  • icons    │    │  │  │ • Icon    │  │ • Mobile  │  │  Gallery│ ││    │
+│  └─────────────┘    │  │  │ • Slider  │  │   Search  │  │• Product│ ││    │
+│                     │  │  │ • Video   │  │   Banner  │  │  Details│ ││    │
+│  ┌─────────────┐    │  │  │ • Image   │  └───────────┘  │• Product│ ││    │
+│  │   hooks/    │    │  │  └───────────┘                 │  Info   │ ││    │
+│  │  ─────────  │    │  │                                │• Related│ ││    │
+│  │  • mobile   │    │  │  ┌───────────────────────────┐ │  Prods  │ ││    │
+│  │             │    │  │  │       templates/          │ │• TopBan │ ││    │
+│  └─────────────┘    │  │  │ ─────────────────────────  │ └─────────┘ ││    │
+│                     │  │  │ • ProductPageTemplate     │             ││    │
+│                     │  │  └───────────────────────────┘             ││    │
+│                     │  └─────────────────────────────────────────────┘│    │
+│                     │                                                  │    │
+│                     │  ┌─────────────┐  ┌─────────────┐  ┌──────────┐ │    │
+│                     │  │   assets/   │  │  contexts/  │  │services/ │ │    │
+│                     │  │ ─────────── │  │ ─────────── │  │──────────│ │    │
+│                     │  │ • fonts     │  │ • Language  │  │ • api/   │ │    │
+│                     │  │ • icons     │  │   Context   │  │   product│ │    │
+│                     │  │ • images    │  └─────────────┘  │   Service│ │    │
+│                     │  │ • videos    │                   └──────────┘ │    │
+│                     │  └─────────────┘                                │    │
+│                     │                                                  │    │
+│                     │  ┌─────────────┐  ┌─────────────────────────┐   │    │
+│                     │  │   utils/    │  │      localization/      │   │    │
+│                     │  │ ─────────── │  │ ─────────────────────── │   │    │
+│                     │  │ • helpers   │  │ • en.ts (English)       │   │    │
+│                     │  │   (cn,      │  │ • ar.ts (Arabic)        │   │    │
+│                     │  │   hooks)    │  │ • index.ts              │   │    │
+│                     │  └─────────────┘  └─────────────────────────┘   │    │
+│                     └─────────────────────────────────────────────────┘    │
+│                                                                             │
+├─────────────────────────────────────────────────────────────────────────────┤
+│  BRAND COLORS                                                               │
+│  ┌────────────┐ ┌────────────┐ ┌────────────┐ ┌────────────┐               │
+│  │  ████████  │ │  ░░░░░░░░  │ │  ▓▓▓▓▓▓▓▓  │ │  ▒▒▒▒▒▒▒▒  │               │
+│  │  Primary   │ │  Secondary │ │   Accent   │ │  Product   │               │
+│  │  #212121   │ │  #FFFFFF   │ │  #96ECA3   │ │  #C8B5A0   │               │
+│  └────────────┘ └────────────┘ └────────────┘ └────────────┘               │
+└─────────────────────────────────────────────────────────────────────────────┘
+```
 
-### Header
-- Promotional bar with discount code
-- Currency selector (SAR)
-- Language switcher (EN/AR)
-- Navigation menu (desktop & mobile)
-- Search and cart icons
+## Directory Overview
 
-### Product Details
-- Material Details (Stretch & Lining sliders)
-- Cleaning Instructions (icon-based)
-- Product Description
-- Free Replacement & Return policy
+| Directory           | Purpose                                              |
+| ------------------- | ---------------------------------------------------- |
+| `app/`              | Next.js App Router pages, layouts, and global styles |
+| `src/components/`   | React components organized by Atomic Design          |
+| `src/assets/`       | Static assets (fonts, icons, images, videos)         |
+| `src/contexts/`     | React context providers (Language/RTL)               |
+| `src/localization/` | Translation files (EN/AR)                            |
+| `src/services/`     | API service layer and data fetching                  |
+| `src/utils/`        | Helper functions and custom hooks                    |
+| `hooks/`            | Shared React hooks                                   |
+| `public/`           | Public static files                                  |
 
-### Slider
-- Custom range slider with visual step indicators
-- Green pill-shaped thumb
-- Active state highlighting
-- Snaps to predefined values
+## Component Architecture
 
-## Browser Support
+This project follows the **Atomic Design** methodology:
 
-- Chrome (latest)
-- Firefox (latest)
-- Safari (latest)
-- Edge (latest)
+- **Atoms**: Basic building blocks (Button, CustomText, Icon, Slider, ProductImage, CustomVideoPlayer)
+- **Molecules**: Combinations of atoms (BannerItem, MobileSearchBanner)
+- **Organisms**: Complex UI sections (Header, ProductDetails, ProductImageGallery, ProductInfoSection, RelatedProducts, TopBanner)
+- **Templates**: Page layouts (ProductPageTemplate)
 
-## License
+## Design System
 
-Proprietary - Aleena Fashion
+Design tokens are defined in `app/globals.css` using CSS custom properties:
+
+- **Colors**: Primary (#212121), Secondary (#ffffff), Accent (#96eca3)
+- **Spacing**: 4px to 64px scale using rem units
+- **Typography**: Satoshi font with 4 weight variants
+- **Border Radius**: sm, md, lg, xl, full
+
+## Internationalization
+
+The app supports English (LTR) and Arabic (RTL):
+
+```typescript
+import { useLanguage } from "@/src/contexts/LanguageContext";
+
+const { t, isRTL, setLanguage } = useLanguage();
+```
+
+## Documentation
+
+Detailed documentation is available in the `__docs__/` directory:
+
+- **Components**
+  - [Atoms](__docs__/components/atoms/) - Button, CustomText, Icon, Slider, ProductImage, CustomVideoPlayer
+  - [Molecules](__docs__/components/molecules/) - BannerItem, MobileSearchBanner
+  - [Organisms](__docs__/components/organisms/) - Header, TopBanner, ProductImageGallery, ProductInfoSection, ProductDetails, RelatedProducts
+  - [Templates](__docs__/components/templates/) - ProductPageTemplate
+- **Utilities**
+  - [Helpers](__docs__/utils/Helpers.md) - cn, checkMobileView, useClickOutside, useEscapeKey
+  - [ProductService](__docs__/utils/ProductService.md) - API service layer

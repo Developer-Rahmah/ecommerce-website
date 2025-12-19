@@ -17,7 +17,7 @@ export const metadata: Metadata = {
       },
     ],
   },
-  generator: "v0.app",
+  generator: "Rahmah",
 };
 
 // Load local Satoshi font
